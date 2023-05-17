@@ -1,6 +1,6 @@
 #![allow(dead_code, unused)]
 
-use std::ops::Range;
+use std::{char::MAX, ops::Range};
 #[path = "../src/file_parsers.rs"]
 mod file_parsers;
 #[path = "../src/utilities.rs"]
@@ -79,4 +79,34 @@ pub fn seven() {
     const NTH: u64 = 10001;
     let a = utilities::get_nth_prime(&NTH);
     println!("{a}");
+}
+
+pub fn eight() {
+    const MAX_ADJACENT: usize = 13;
+    let test = file_parsers::read_txt_into_nums("Files\\eight.txt");
+    let closure = |x: Vec<u32>| -> u64 {
+        let mut largest: u64 = 0;
+        for (i, v) in x.iter().enumerate() {
+            if *v == 0 {
+                continue;
+            }
+            let mut product = *v as u64;
+            let range = (i + 1)..(MAX_ADJACENT + i);
+            for j in range {
+                let Some(n) = x.get(j) else {
+                    break;
+                };
+                if *n == 0 {
+                    break;
+                }
+                product *= *n as u64;
+            }
+            if product > largest {
+                largest = product;
+            }
+        }
+        return largest;
+    };
+    let t: u64 = closure(test.collect::<Vec<u32>>());
+    println!("{t}");
 }
