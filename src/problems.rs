@@ -56,10 +56,9 @@ pub fn four() {
 }
 pub fn five() {
     const MAX: u64 = 20;
-    let primes: Vec<u64> = utilities::get_primes_bad_method(&(MAX + 1)).collect();
+    let primes = utilities::get_primes_bad_method(&(MAX + 1));
     let product: u64 = primes
-        .iter()
-        .map(|x| (1..).map(|a| (*x).pow(a)).take_while(|a| *a <= MAX).last())
+        .map(|x| (1..).map(|a| (x).pow(a)).take_while(|a| *a <= MAX).last())
         .map(|x| match x {
             None => 1,
             Some(a) => a,
