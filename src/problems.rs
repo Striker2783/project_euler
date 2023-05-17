@@ -111,6 +111,7 @@ pub fn eight() {
     println!("{t}");
 }
 
+/// Test
 pub fn nine() {
     let mut triplets = utilities::pythagoreon_triples(&500);
     let max = triplets.filter(|x| x.0 + x.1 + x.2 == 1000).last();
@@ -119,4 +120,8 @@ pub fn nine() {
     }
 }
 
-pub fn curr() {}
+pub fn curr() {
+    let a = utilities::sieve_of_eratosthenes(&4_000_000);
+    let sum: u64 = a.iter().sum();
+    println!("{sum}");
+}
