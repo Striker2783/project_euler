@@ -1,4 +1,6 @@
 #![allow(dead_code, unused)]
+
+use std::ops::Range;
 #[path = "../src/file_parsers.rs"]
 mod file_parsers;
 #[path = "../src/utilities.rs"]
@@ -51,5 +53,18 @@ pub fn four() {
     if let Some(a) = largest {
         println!("{}", a);
     }
+}
+pub fn five() {
+    const MAX: u64 = 20;
+    let primes: Vec<u64> = utilities::get_primes_bad_method(&(MAX + 1)).collect();
+    let product: u64 = primes
+        .iter()
+        .map(|x| (1..).map(|a| (*x).pow(a)).take_while(|a| *a <= MAX).last())
+        .map(|x| match x {
+            None => 1,
+            Some(a) => a,
+        })
+        .product();
+    println!("{product}")
 }
 pub fn curr() {}

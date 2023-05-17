@@ -29,3 +29,19 @@ pub fn is_palindromic(x: &u64) -> bool {
     let curr: Vec<char> = x.to_string().chars().collect();
     return reverse == curr;
 }
+
+fn is_prime(n: &u64) -> bool {
+    let mut n = *n;
+    if n <= 1 {
+        return false;
+    }
+    for a in 2..(((n as f64).sqrt() as u64) + 1) {
+        if n % a == 0 {
+            return false;
+        }
+    }
+    true
+}
+pub fn get_primes_bad_method<'a>(upper: &'a u64) -> impl Iterator<Item = u64> + 'a {
+    return (2..).take_while(|x| x < upper).filter(|x| is_prime(x));
+}
