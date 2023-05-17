@@ -45,3 +45,23 @@ fn is_prime(n: &u64) -> bool {
 pub fn get_primes_bad_method<'a>(upper: &'a u64) -> impl Iterator<Item = u64> + 'a {
     return (2..).take_while(|x| x < upper).filter(|x| is_prime(x));
 }
+pub fn get_nth_prime(nth: &u64) -> u64 {
+    if *nth == 1 {
+        return 2;
+    }
+    let mut n = 0;
+    let nth_prime = (3..)
+        .step_by(2)
+        .filter(|x| is_prime(x))
+        .map(|x| {
+            n += 1;
+            (x, n)
+        })
+        .take_while(|a| a.1 < *nth)
+        .last();
+    if let Some(a) = nth_prime {
+        return a.0;
+    } else {
+        unreachable!();
+    }
+}

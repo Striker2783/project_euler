@@ -66,4 +66,17 @@ pub fn five() {
         .product();
     println!("{product}")
 }
-pub fn curr() {}
+pub fn six() {
+    const MAX: u64 = 100;
+    let sum_of_squares: u64 = (1..MAX + 1).map(|x| x * x).sum();
+    let square_of_sum = (1..MAX + 1).sum::<u64>().pow(2);
+    println!("{sum_of_squares}, {square_of_sum}");
+    let diff = square_of_sum - sum_of_squares;
+    println!("{diff}");
+}
+
+pub fn seven() {
+    const NTH: u64 = 10001;
+    let a = utilities::get_nth_prime(&NTH);
+    println!("{a}");
+}
