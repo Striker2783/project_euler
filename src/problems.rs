@@ -120,8 +120,10 @@ pub fn nine() {
     }
 }
 
-pub fn curr() {
-    let a = utilities::sieve_of_eratosthenes(&4_000_000);
+pub fn ten() {
+    let a = utilities::sieve_of_eratosthenes(&2_000_000);
     let sum: u64 = a.iter().sum();
     println!("{sum}");
 }
+
+pub fn curr() {}
