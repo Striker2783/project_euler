@@ -10,6 +10,19 @@ fn read_lines<P: AsRef<Path>>(filename: P) -> io::Lines<io::BufReader<File>> {
     io::BufReader::new(value).lines()
 }
 
+pub fn read_txt_into_separate_nums<P: AsRef<Path>>(filename: P) -> Vec<Vec<u64>> {
+    let read_lines = read_lines(filename);
+
+    read_lines
+        .map(|x| {
+            x.expect("Failed")
+                .split(" ")
+                .map(|x| x.parse::<u64>().expect("Failed"))
+                .collect::<Vec<u64>>()
+        })
+        .collect::<Vec<Vec<u64>>>()
+}
+
 pub fn read_txt_into_nums<P: AsRef<Path>>(filename: P) -> impl Iterator<Item = u32> {
     let read_lines = read_lines(filename);
 
