@@ -1,44 +1,28 @@
-use crate::problems::{file_parsers, utilities};
-
-pub fn eight() {
-    const MAX_ADJACENT: usize = 13;
-    let test = file_parsers::read_txt_into_nums("Files\\eight.txt");
-    let closure = |x: Vec<u32>| -> u64 {
-        let mut largest: u64 = 0;
-        for (i, v) in x.iter().enumerate() {
-            if *v == 0 {
-                continue;
-            }
-            let mut product = *v as u64;
-            let range = (i + 1)..(MAX_ADJACENT + i);
-            for j in range {
-                let Some(n) = x.get(j) else {
-                    break;
-                };
-                if *n == 0 {
-                    break;
-                }
-                product *= *n as u64;
-            }
-            if product > largest {
-                largest = product;
-            }
-        }
-        return largest;
-    };
-    let t: u64 = closure(test.collect::<Vec<u32>>());
-    println!("{t}");
-}
-
-pub fn nine() {
-    let mut triplets = utilities::pythagoreon_triples(&500);
-    let max = triplets.filter(|x| x.0 + x.1 + x.2 == 1000).last();
-    if let Some(a) = max {
-        println!("{}", a.0 * a.1 * a.2);
-    }
-}
 pub fn ten() {
-    let a = utilities::sieve_of_eratosthenes(&2_000_000);
+    let a = sieve_of_eratosthenes(&2_000_000);
     let sum: u64 = a.iter().sum();
     println!("{sum}");
+}
+pub fn sieve_of_eratosthenes(upper: &u64) -> Vec<u64> {
+    let range = 0u64..*upper;
+    let mut vec: Vec<bool> = range.map(|_| true).collect();
+    for i in 2.. {
+        if i * i > *upper {
+            break;
+        }
+        if !vec[i as usize] {
+            continue;
+        }
+        let vec_length = vec.len() as u64;
+        for j in ((2 * i)..vec_length).step_by(i as usize) {
+            vec[j as usize] = false;
+        }
+    }
+    let mut primes: Vec<u64> = vec![];
+    for i in 2..vec.len() {
+        if vec[i] {
+            primes.push(i as u64);
+        }
+    }
+    primes
 }

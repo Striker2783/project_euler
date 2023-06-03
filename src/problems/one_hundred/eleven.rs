@@ -29,3 +29,15 @@ pub fn elevent() {
         .max();
     println!("{:?}", vertical)
 }
+pub fn read_txt_into_separate_nums<P: AsRef<Path>>(filename: P) -> Vec<Vec<u64>> {
+    let read_lines = read_lines(filename);
+
+    read_lines
+        .map(|x| {
+            x.expect("Failed")
+                .split(" ")
+                .map(|x| x.parse::<u64>().expect("Failed"))
+                .collect::<Vec<u64>>()
+        })
+        .collect::<Vec<Vec<u64>>>()
+}

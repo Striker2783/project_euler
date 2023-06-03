@@ -1,75 +1,27 @@
-use crate::problems::utilities;
+use super::five::is_prime;
 
-pub fn one() {
-    const MAX: i32 = 1000;
-    let sum: i32 = (0..)
-        .take_while(|x| x < &MAX)
-        .filter(|x| x % 5 == 0 || x % 3 == 0)
-        .sum();
-    println!("{sum}")
-}
-pub fn two() {
-    const MAX: u64 = 4_000_000;
-    let test = utilities::Fibonacci::new();
-    let sum: u64 = test
-        .into_iter()
-        .take_while(|x| x < &MAX)
-        .filter(|x| x % 2 == 0)
-        .sum();
-    println!("{sum}")
-}
-pub fn three() {
-    const NUM: u64 = 600851475143;
-    let mut largest = 0;
-    let mut n = NUM;
-    let mut i = 2;
-    while n > 1 {
-        if n % i == 0 {
-            n /= i;
-            if i > largest {
-                largest = i;
-            }
-            i = 2;
-            continue;
-        }
-        i += 1;
-    }
-    println!("{largest}");
-}
-pub fn four() {
-    const MIN: u64 = 100;
-    const MAX: u64 = 1000;
-    let map1 = MIN..MAX;
-    let largest = map1
-        .flat_map(|i| (i..MAX).map(move |j| i * j))
-        .filter(|x| utilities::is_palindromic(x))
-        .max();
-    if let Some(a) = largest {
-        println!("{}", a);
-    }
-}
-pub fn five() {
-    const MAX: u64 = 20;
-    let primes = utilities::get_primes_bad_method(&(MAX + 1));
-    let product: u64 = primes
-        .map(|x| (1..).map(|a| (x).pow(a)).take_while(|a| *a <= MAX).last())
-        .map(|x| match x {
-            None => 1,
-            Some(a) => a,
-        })
-        .product();
-    println!("{product}")
-}
-pub fn six() {
-    const MAX: u64 = 100;
-    let sum_of_squares: u64 = (1..MAX + 1).map(|x| x * x).sum();
-    let square_of_sum = (1..MAX + 1).sum::<u64>().pow(2);
-    println!("{sum_of_squares}, {square_of_sum}");
-    let diff = square_of_sum - sum_of_squares;
-    println!("{diff}");
-}
 pub fn seven() {
     const NTH: u64 = 10001;
-    let a = utilities::get_nth_prime(&NTH);
+    let a = get_nth_prime(&NTH);
     println!("{a}");
+}
+pub fn get_nth_prime(nth: &u64) -> u64 {
+    if *nth == 1 {
+        return 2;
+    }
+    let mut n = 0;
+    let nth_prime = (3..)
+        .step_by(2)
+        .filter(|x| is_prime(x))
+        .map(|x| {
+            n += 1;
+            (x, n)
+        })
+        .take_while(|a| a.1 < *nth)
+        .last();
+    if let Some(a) = nth_prime {
+        return a.0;
+    } else {
+        unreachable!();
+    }
 }
