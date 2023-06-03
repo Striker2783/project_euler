@@ -1,5 +1,4 @@
-mod problems;
-
+use project_euler::{self, run};
 fn main() {
-    problems::curr()
+    run();
 }
