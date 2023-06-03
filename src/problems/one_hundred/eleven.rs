@@ -1,6 +1,8 @@
-pub fn elevent() {
+use std::{error::Error, fs, path::Path};
+
+pub fn eleven() -> Result<(), Box<dyn Error>> {
     const MAX_ADJACENT: usize = 4;
-    let a = file_parsers::read_txt_into_separate_nums("Files/ten.txt");
+    let a = read_txt_into_separate_nums("Files/ten.txt")?;
     // let horizontal = (0usize..a.len())
     //     .filter_map(|i| {
     //         let row = &a[i];
@@ -27,17 +29,23 @@ pub fn elevent() {
                 .max()
         })
         .max();
-    println!("{:?}", vertical)
+    println!("{:?}", vertical);
+    Ok(())
 }
-pub fn read_txt_into_separate_nums<P: AsRef<Path>>(filename: P) -> Vec<Vec<u64>> {
-    let read_lines = read_lines(filename);
+pub fn read_txt_into_separate_nums<P: AsRef<Path>>(
+    filename: P,
+) -> Result<Vec<Vec<u64>>, Box<dyn Error>> {
+    let content = fs::read_to_string(filename)?;
 
-    read_lines
+    Ok(content
+        .lines()
         .map(|x| {
-            x.expect("Failed")
-                .split(" ")
-                .map(|x| x.parse::<u64>().expect("Failed"))
+            x.split(' ')
+                .filter_map(|x| match x.parse::<u64>() {
+                    Ok(a) => Some(a),
+                    Err(_) => None,
+                })
                 .collect::<Vec<u64>>()
         })
-        .collect::<Vec<Vec<u64>>>()
+        .collect())
 }
