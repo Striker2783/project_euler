@@ -1,51 +1,81 @@
-use std::{error::Error, fs, path::Path};
+use std::{error::Error, fs, ops::Deref, path::Path};
 
-pub fn eleven() -> Result<(), Box<dyn Error>> {
-    const MAX_ADJACENT: usize = 4;
-    let a = read_txt_into_separate_nums("Files/ten.txt")?;
-    // let horizontal = (0usize..a.len())
-    //     .filter_map(|i| {
-    //         let row = &a[i];
-    //         (0..(row.len() - MAX_ADJACENT + 1))
-    //             .map(|j| {
-    //                 if row[j] == 0 {
-    //                     return 0;
-    //                 }
-    //                 (j..(MAX_ADJACENT + j)).fold(1, |a, k| a * row[k])
-    //             })
-    //             .max()
-    //     })
-    //     .max();
-    let column_length = a[0].len();
-    let vertical = (0usize..column_length)
-        .filter_map(|i| {
-            (0..(column_length - MAX_ADJACENT + 1))
-                .map(|j| {
-                    if a[j][i] == 0 {
-                        return 0;
-                    }
-                    (j..(MAX_ADJACENT + j)).fold(1, |acc, k| acc * a[k][i])
-                })
-                .max()
-        })
-        .max();
-    println!("{:?}", vertical);
+pub fn run() -> Result<(), Box<dyn Error>> {
+    let contents = fs::read_to_string("Files/eleven.txt")?;
+    let main = Main::parse(&contents)?;
+    let max = main.find_max_adjacent(&4);
+    println!("{max}");
     Ok(())
 }
-pub fn read_txt_into_separate_nums<P: AsRef<Path>>(
-    filename: P,
-) -> Result<Vec<Vec<u64>>, Box<dyn Error>> {
-    let content = fs::read_to_string(filename)?;
+#[derive(Default, Debug)]
+struct Main {
+    nums: Vec<Vec<u8>>,
+}
+impl Main {
+    fn find_max_adjacent(&self, &max: &u32) -> u64 {
+        *vec![
+            self.max_horizontal_adjacent(&max),
+            self.max_vertical_adjacent(&max),
+        ]
+        .iter()
+        .max()
+        .expect("")
+    }
+    fn max_vertical_adjacent(&self, &max: &u32) -> u64 {
+        let mut rows = &self.nums;
+        let columns = self.nums[0].len();
+        for i in 0..columns {
+            //
+        }
 
-    Ok(content
-        .lines()
-        .map(|x| {
-            x.split(' ')
-                .filter_map(|x| match x.parse::<u64>() {
-                    Ok(a) => Some(a),
-                    Err(_) => None,
-                })
-                .collect::<Vec<u64>>()
-        })
-        .collect())
+        todo!()
+    }
+    fn max_horizontal_adjacent(&self, &max: &u32) -> u64 {
+        let mut rows = &self.nums;
+        rows.iter()
+            .map(|row| {
+                let selected = 0..=(row.len() - max as usize);
+                selected
+                    .map(|i| {
+                        let nums = &row[i..(i + max as usize)];
+                        let product = nums.iter().fold(1u64, |acc, &x| acc * x as u64);
+                        product
+                    })
+                    .max()
+                    .expect("")
+            })
+            .max()
+            .expect("")
+    }
+    fn parse(contents: &str) -> Result<Self, Box<dyn Error>> {
+        let mut main = Main::default();
+
+        main.nums = contents
+            .lines()
+            .map(|line| {
+                line.split(' ')
+                    .filter_map(|num| match num.parse::<u8>() {
+                        Ok(n) => Some(n),
+                        Err(_) => None,
+                    })
+                    .collect()
+            })
+            .collect();
+
+        Ok(main)
+    }
+}
+
+#[cfg(test)]
+mod test {
+    use std::fs;
+
+    use super::Main;
+
+    #[test]
+    fn find_max_adjacent() {
+        let contents = fs::read_to_string("Files/eleven.txt").expect("msg");
+        let main = Main::parse(&contents).expect("");
+        assert_eq!(main.find_max_adjacent(&4), 70600674)
+    }
 }
