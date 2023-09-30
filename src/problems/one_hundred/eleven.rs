@@ -1,4 +1,4 @@
-use std::{error::Error, fs, ops::Deref, path::Path};
+use std::{collections::VecDeque, error::Error, fs, ops::Deref, path::Path, vec};
 
 pub fn run() -> Result<(), Box<dyn Error>> {
     let contents = fs::read_to_string("Files/eleven.txt")?;
@@ -12,54 +12,91 @@ struct Main {
     nums: Vec<Vec<u8>>,
 }
 impl Main {
-    fn find_max_adjacent(&self, max: u32) -> u64 {
+    fn find_max_in_vec(vec: &[u8], max: usize) -> u64 {
+        if vec.len() < max {
+            return 0;
+        }
+        let mut queue = VecDeque::new();
+        let mut mult = 0;
+        vec.iter().for_each(|&x| {
+            if queue.len() >= max {
+                queue.pop_front();
+            }
+            queue.push_back(x);
+            if queue.len() == max {
+                mult = queue.iter().map(|x| *x as u64).product::<u64>().max(mult);
+            }
+        });
+        mult
+    }
+    fn find_max_adjacent(&self, max: usize) -> u64 {
         self.max_horizontal_adjacent(max)
             .max(self.max_vertical_adjacent(max))
-            .max(self.max_diagonal_adjacent(max))
+            .max(self.max_diagonal_row_adjacent(max))
+            .max(self.max_diagonal_column_adjacent(max))
     }
-    fn max_vertical_adjacent(&self, max: u32) -> u64 {
-        let max = max as usize;
-        let mut rows = &self.nums;
+    fn max_vertical_adjacent(&self, max: usize) -> u64 {
         let columns = self.nums[0].len();
         let mut max_n = 0;
-        for i in 0..=(rows.len() - max) {
-            for j in 0..columns {
-                let column: Vec<_> = rows.iter().skip(i).take(max).map(|v| v[j]).collect();
-                let product = column.iter().fold(1u64, |acc, n| acc * *n as u64);
-                max_n = max_n.max(product)
+        for column in 0..columns {
+            let mut vec = vec![];
+            for j in 0..self.nums.len() {
+                vec.push(self.nums[j][column]);
             }
+            max_n = Main::find_max_in_vec(&vec, max).max(max_n);
         }
         max_n
     }
-    fn max_horizontal_adjacent(&self, max: u32) -> u64 {
-        let mut rows = &self.nums;
-        rows.iter()
-            .map(|row| {
-                let selected = 0..=(row.len() - max as usize);
-                selected
-                    .map(|i| {
-                        let nums = &row[i..(i + max as usize)];
-                        let product = nums.iter().fold(1u64, |acc, &x| acc * x as u64);
-                        product
-                    })
-                    .max()
-                    .expect("")
-            })
-            .max()
-            .expect("")
-    }
-    fn max_diagonal_adjacent(&self, max: u32) -> u64 {
-        let max = max as usize;
-        let mut rows = &self.nums;
-        let columns = rows[0].len();
-        let max_n = 0;
-        for i in 0..=(rows.len() - max) {
-            for j in 0..=(columns - max) {
-                let selected: Vec<_> = (i..(i + max)).map(|i| rows[i + j][i]).collect();
-                println!("{selected:?}")
-            }
+    fn max_horizontal_adjacent(&self, max: usize) -> u64 {
+        let mut max_n = 0;
+        for row in &self.nums {
+            max_n = Main::find_max_in_vec(row, max).max(max_n)
         }
-        todo!();
+        max_n
+    }
+    fn max_diagonal_row_adjacent(&self, max: usize) -> u64 {
+        let rows = self.nums.len();
+        let columns = self.nums[0].len();
+        let mut max_n = 0;
+
+        for row_offset in 0..rows {
+            let mut right = vec![];
+            let mut left = vec![];
+            for i in 0..(rows - row_offset) {
+                if i >= columns {
+                    continue;
+                }
+                let row = i + row_offset;
+                right.push(self.nums[row][i]);
+                left.push(self.nums[rows - row - 1][i]);
+            }
+            max_n = Main::find_max_in_vec(&right, max).max(max_n);
+            max_n = Main::find_max_in_vec(&left, max).max(max_n);
+        }
+
+        max_n
+    }
+    fn max_diagonal_column_adjacent(&self, max: usize) -> u64 {
+        let rows = self.nums.len();
+        let columns = self.nums[0].len();
+        let mut max_n = 0;
+
+        for column_offset in 0..columns {
+            let mut top = vec![];
+            let mut bottom = vec![];
+            for i in 0..(columns - column_offset) {
+                if i > rows {
+                    continue;
+                }
+                let column = i + column_offset;
+                top.push(self.nums[i][column]);
+                bottom.push(self.nums[i][columns - column - 1]);
+            }
+            max_n = Main::find_max_in_vec(&top, max).max(max_n);
+            max_n = Main::find_max_in_vec(&bottom, max).max(max_n);
+        }
+
+        max_n
     }
     fn parse(contents: &str) -> Result<Self, Box<dyn Error>> {
         Ok(Main {
@@ -83,6 +120,17 @@ mod test {
     use std::fs;
 
     use super::Main;
+    #[test]
+    fn find_max_in_vec() {
+        let vec = vec![52, 51, 2, 0, 3, 10, 2, 1];
+        assert_eq!(Main::find_max_in_vec(&vec, 4), 3 * 10 * 2);
+    }
+    #[test]
+    fn max_diagonal_row_adjacent() {
+        let contents = "12 53\n24 23";
+        let main = Main::parse(contents).expect("");
+        assert_eq!(main.max_diagonal_row_adjacent(2), 53 * 24);
+    }
 
     #[test]
     fn find_max_adjacent() {
