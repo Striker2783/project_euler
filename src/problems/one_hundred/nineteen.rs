@@ -181,12 +181,21 @@ impl ToString for Date {
 
 #[cfg(test)]
 mod test {
-    use crate::problems::one_hundred::nineteen::Date;
+    use crate::problems::one_hundred::nineteen::{Date, DayOfWeek, Month};
 
     #[test]
     fn test_is_leap_year() {
         assert!(Date::is_leap_year(2000));
         assert!(!Date::is_leap_year(1900));
         assert!(Date::is_leap_year(2004));
+    }
+    #[test]
+    fn test_counting_sundays() {
+        let mut start_date = Date::new(1900, 1, DayOfWeek::Monday, Month::January);
+        let starting = Date::new(1901, 1, DayOfWeek::Monday, Month::January);
+        start_date.increment_to(&starting);
+        let end_date = Date::new(2000, 31, DayOfWeek::Monday, Month::December);
+        let sundays = start_date.counting_sundays(&end_date);
+        assert_eq!(sundays, 171);
     }
 }
