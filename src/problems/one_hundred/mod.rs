@@ -14,4 +14,5 @@ pub mod sixteen;
 pub mod ten;
 pub mod thirteen;
 pub mod twelve;
+pub mod twenty;
 pub mod two;
