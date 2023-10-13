@@ -15,6 +15,7 @@ pub mod ten;
 pub mod thirteen;
 pub mod twelve;
 pub mod twenty;
+pub mod twenty_four;
 pub mod twenty_one;
 pub mod twenty_three;
 pub mod twenty_two;
