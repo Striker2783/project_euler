@@ -3,5 +3,5 @@ pub mod problems;
 use problems::one_hundred::*;
 
 pub fn run() {
-    let _ = twenty_two::run();
+    twenty_three::run();
 }
