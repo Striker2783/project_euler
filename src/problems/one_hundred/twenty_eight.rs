@@ -1,4 +1,7 @@
-pub fn run() {}
+pub fn run() {
+    let solution = solve(1001);
+    println!("{solution}");
+}
 
 fn solve(n: u32) -> u64 {
     let mut sum = 1;
