@@ -24,3 +24,4 @@ pub mod twenty_six;
 pub mod twenty_three;
 pub mod twenty_two;
 pub mod two;
+pub mod twenty_nine;
