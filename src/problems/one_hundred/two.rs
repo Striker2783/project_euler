@@ -1,6 +1,6 @@
 pub fn two() {
     const MAX: u64 = 4_000_000;
-    let test = Fibonacci::new();
+    let test = Fibonacci::default();
     let sum: u64 = test
         .into_iter()
         .take_while(|x| x < &MAX)
@@ -13,9 +13,9 @@ pub struct Fibonacci {
     curr: u64,
 }
 
-impl Fibonacci {
-    pub fn new() -> Self {
-        return Fibonacci { next: 1, curr: 0 };
+impl Default for Fibonacci {
+    fn default() -> Self {
+        Fibonacci { next: 1, curr: 0 }
     }
 }
 
@@ -30,6 +30,6 @@ impl Iterator for Fibonacci {
 
             return Some(self.curr);
         }
-        return None;
+        None
     }
 }
