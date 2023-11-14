@@ -12,7 +12,7 @@ pub fn get_nth_prime(nth: &u64) -> u64 {
     let mut n = 0;
     let nth_prime = (3..)
         .step_by(2)
-        .filter(|x| is_prime(x))
+        .filter(is_prime)
         .map(|x| {
             n += 1;
             (x, n)
@@ -20,7 +20,7 @@ pub fn get_nth_prime(nth: &u64) -> u64 {
         .take_while(|a| a.1 < *nth)
         .last();
     if let Some(a) = nth_prime {
-        return a.0;
+        a.0
     } else {
         unreachable!();
     }
