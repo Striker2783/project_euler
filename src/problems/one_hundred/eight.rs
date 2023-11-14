@@ -28,7 +28,7 @@ pub fn eight() {
                 largest = product;
             }
         }
-        return largest;
+        largest
     };
     let t: u64 = closure(test.collect::<Vec<u32>>());
     println!("{t}");
@@ -41,11 +41,8 @@ pub fn read_txt_into_nums<P: AsRef<Path>>(filename: P) -> impl Iterator<Item = u
             panic!();
         };
         a.chars()
-            .into_iter()
             .map(|b| {
-                let Some(x) = b.to_digit(10) else {
-                panic!()
-            };
+                let Some(x) = b.to_digit(10) else { panic!() };
                 x
             })
             .collect::<Vec<u32>>()
