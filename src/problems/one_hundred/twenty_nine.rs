@@ -46,6 +46,6 @@ mod tests {
     #[test]
     fn test_solve() {
         assert_eq!(naive(2..=5, 2..=5), 15);
-        assert_eq!(naive(2..=100, 2..=100), 2);
+        assert_eq!(naive(2..=100, 2..=100), 9183);
     }
 }
