@@ -3,15 +3,12 @@ pub fn five() {
     let primes = get_primes_bad_method(&(MAX + 1));
     let product: u64 = primes
         .map(|x| (1..).map(|a| (x).pow(a)).take_while(|a| *a <= MAX).last())
-        .map(|x| match x {
-            None => 1,
-            Some(a) => a,
-        })
+        .map(|x| x.unwrap_or(1))
         .product();
     println!("{product}")
 }
-pub fn get_primes_bad_method<'a>(upper: &'a u64) -> impl Iterator<Item = u64> + 'a {
-    return (2..).take_while(|x| x < upper).filter(|x| is_prime(x));
+pub fn get_primes_bad_method(upper: &u64) -> impl Iterator<Item = u64> + '_ {
+    (2..).take_while(|x| x < upper).filter(is_prime)
 }
 pub fn is_prime(n: &u64) -> bool {
     let n = *n;
