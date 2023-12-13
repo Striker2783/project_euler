@@ -56,6 +56,9 @@ mod tests {
     #[test]
     fn test_is_pandigital() {
         assert!(is_pandigital(39, 186, 7254));
-        solve();
+    }
+    #[test]
+    fn test_solve() {
+        assert_eq!(solve(), 45228);
     }
 }
