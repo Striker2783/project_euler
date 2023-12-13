@@ -48,6 +48,6 @@ mod tests {
     #[test]
     fn test_solve() {
         assert_eq!(solve(100), 13);
-        assert_eq!(solve(1_000_000), 13);
+        assert_eq!(solve(1_000_000), 55);
     }
 }
