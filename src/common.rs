@@ -11,3 +11,11 @@ pub fn is_prime(n: u32) -> bool {
     }
     true
 }
+pub fn num_len(mut n: u32) -> u32 {
+    let mut len = 0;
+    while n > 0 {
+        n /= 10;
+        len += 1;
+    }
+    len
+}

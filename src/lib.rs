@@ -4,5 +4,5 @@ pub mod problems;
 use problems::one_hundred::*;
 
 pub fn run() {
-    thirty_seven::run();
+    thirty_eight::run();
 }
