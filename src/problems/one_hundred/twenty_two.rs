@@ -1,11 +1,10 @@
 use std::{error::Error, fs};
 
-pub fn run() -> Result<(), Box<dyn Error>> {
-    let contents = fs::read_to_string("Files/twenty_two.txt")?;
+pub fn run() {
+    let contents = fs::read_to_string("Files/twenty_two.txt").unwrap();
     let stuff = TwentyTwo::parse(&contents);
     let x = stuff.get_sum_name_scores();
     println!("{x}");
-    Ok(())
 }
 
 struct TwentyTwo {

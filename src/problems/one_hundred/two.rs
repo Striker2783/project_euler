@@ -1,4 +1,4 @@
-pub fn two() {
+pub fn run() {
     const MAX: u64 = 4_000_000;
     let test = Fibonacci::default();
     let sum: u64 = test

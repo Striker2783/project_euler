@@ -1,11 +1,10 @@
 use std::{collections::VecDeque, error::Error, fs, ops::Deref, path::Path, vec};
 
-pub fn run() -> Result<(), Box<dyn Error>> {
-    let contents = fs::read_to_string("Files/eleven.txt")?;
-    let main = Main::parse(&contents)?;
+pub fn run() {
+    let contents = fs::read_to_string("Files/eleven.txt").unwrap();
+    let main = Main::parse(&contents).unwrap();
     let max = main.find_max_adjacent(4);
     println!("{max}");
-    Ok(())
 }
 #[derive(Default, Debug)]
 struct Main {

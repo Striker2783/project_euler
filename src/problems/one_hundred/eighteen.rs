@@ -1,9 +1,8 @@
 use std::{error::Error, fs};
 
-pub fn run() -> Result<(), Box<dyn Error>> {
-    let mut pyramid = Pyramid::parse(&fs::read_to_string("Files/eighteen.txt")?);
+pub fn run() {
+    let mut pyramid = Pyramid::parse(&fs::read_to_string("Files/eighteen.txt").unwrap());
     println!("{}", pyramid.max_path());
-    Ok(())
 }
 
 struct Pyramid(Vec<Vec<u32>>);

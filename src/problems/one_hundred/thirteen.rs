@@ -1,11 +1,10 @@
 use std::{error::Error, fs};
 
-pub fn run() -> Result<(), Box<dyn Error>> {
-    let contents = fs::read_to_string("Files/thirteen.txt")?;
+pub fn run() {
+    let contents = fs::read_to_string("Files/thirteen.txt").unwrap();
     let vec = parse(&contents, 11);
     let sum: u64 = vec.iter().sum();
     println!("{}", &sum.to_string()[..10]);
-    Ok(())
 }
 
 fn parse(contents: &str, precision: u32) -> Vec<u64> {

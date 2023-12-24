@@ -1,5 +1,21 @@
+use std::env::args;
+
 use project_euler::{self, run};
 
 fn main() {
-    run();
+    let mut args = args();
+    let n = match args.next() {
+        Some(a) => match a.parse() {
+            Ok(n) => n,
+            Err(_) => {
+                eprintln!("Input a number");
+                return;
+            }
+        },
+        None => {
+            eprintln!("Insert a number");
+            return;
+        }
+    };
+    run(n);
 }
