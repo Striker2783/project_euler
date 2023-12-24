@@ -1,6 +1,8 @@
 use num::BigInt;
 
-pub fn run() {}
+pub fn run() {
+    println!("{}", factorial_digit_sum(100))
+}
 
 fn factorial_digit_sum(n: u32) -> u32 {
     let num = (1..=n).fold(BigInt::from(1), |acc, n| acc * n);

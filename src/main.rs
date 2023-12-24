@@ -4,6 +4,7 @@ use project_euler::{self, run};
 
 fn main() {
     let mut args = args();
+    args.next();
     let n = match args.next() {
         Some(a) => match a.parse() {
             Ok(n) => n,
