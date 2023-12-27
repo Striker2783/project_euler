@@ -3,6 +3,7 @@ pub mod eighteen;
 pub mod eleven;
 pub mod fifteen;
 pub mod five;
+pub mod forty;
 pub mod four;
 pub mod fourteen;
 pub mod nine;
@@ -77,6 +78,7 @@ pub fn run(n: u32) {
         37 => thirty_seven::run(),
         38 => thirty_eight::run(),
         39 => thirty_nine::run(),
+        40 => forty::run(),
         _ => unreachable!(),
     }
 }
