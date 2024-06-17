@@ -16,15 +16,12 @@ fn get_digit(n: u32) -> u32 {
     loop {
         if diff * digits + curr < n {
             curr += diff * digits;
-            println!("{curr}");
         } else {
             last = 10u32.pow(digits - 1) + (n - curr - 1) / digits;
             curr += (n - curr - 1) / digits * digits;
-            println!("{last} {curr}");
             for i in 0..(digits - (n - curr)) {
                 last /= 10;
             }
-            println!("{last}");
             return last % 10;
         }
         digits += 1;
