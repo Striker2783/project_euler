@@ -1,28 +1,36 @@
-use crate::common::num_len;
+use num::pow::Pow;
 
 pub fn run() {
-    //
+    println!(
+        "{}",
+        (0..=6)
+            .map(|i| get_digit(10u32.pow(i)))
+            .fold(1, |acc, i| acc * i)
+    );
 }
-
-fn get_tens(n: u32) -> u32 {
-    0
-}
-
 fn get_digit(n: u32) -> u32 {
-    let mut len = 1;
-    let mut curr_digit = 0;
+    let mut curr = 0;
+    let mut digits = 1;
+    let mut last;
+    let mut diff = 9;
     loop {
-        let num = 9 * 10u32.pow(len - 1) * len + curr_digit;
-        if num <= n {
-            curr_digit = num;
-            len += 1;
+        if diff * digits + curr < n {
+            curr += diff * digits;
+            println!("{curr}");
         } else {
-            break;
+            last = 10u32.pow(digits - 1) + (n - curr - 1) / digits;
+            curr += (n - curr - 1) / digits * digits;
+            println!("{last} {curr}");
+            for i in 0..(digits - (n - curr)) {
+                last /= 10;
+            }
+            println!("{last}");
+            return last % 10;
         }
+        digits += 1;
+        diff = 10u32.pow(digits) - 10u32.pow(digits - 1);
     }
-    let num = 10u32.pow(len - 1);
-    println!("{:?}", (len, curr_digit, num));
-    0
+    unreachable!()
 }
 
 #[cfg(test)]
@@ -31,9 +39,18 @@ mod tests {
 
     #[test]
     fn test_get_digit() {
-        assert_eq!(get_digit(10000), 1);
+        assert_eq!(get_digit(9), 9);
         assert_eq!(get_digit(1), 1);
+        assert_eq!(get_digit(10), 1);
         assert_eq!(get_digit(11), 0);
         assert_eq!(get_digit(12), 1);
+        assert_eq!(get_digit(23), 6);
+        assert_eq!(get_digit(100), 5);
+        assert_eq!(
+            (0..=6)
+                .map(|i| get_digit(10u32.pow(i)))
+                .fold(1, |acc, i| acc * i),
+            210
+        )
     }
 }
