@@ -2,6 +2,11 @@
  * A very basic implementation of primes
  */
 pub struct Primes(u32);
+impl Primes {
+    pub fn reset(&mut self) {
+        self.0 = 1;
+    }
+}
 impl Default for Primes {
     fn default() -> Self {
         Self(1)
