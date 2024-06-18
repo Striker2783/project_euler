@@ -1,3 +1,5 @@
+pub const SMALL_PRIMES: &[u32] = &[2, 3, 5, 7, 11, 13, 17, 19, 23, 29];
+
 pub fn is_prime(n: u32) -> bool {
     if n == 0 || n == 1 {
         return false;
