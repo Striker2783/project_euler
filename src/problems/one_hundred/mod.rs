@@ -4,6 +4,7 @@ pub mod eleven;
 pub mod fifteen;
 pub mod five;
 pub mod forty;
+pub mod forty_five;
 pub mod forty_four;
 pub mod forty_one;
 pub mod forty_three;
@@ -86,6 +87,7 @@ const SOLVERS: &[fn()] = &[
     forty_two::run,
     forty_three::run,
     forty_four::run,
+    forty_five::run,
 ];
 
 pub fn run(n: u32) {
