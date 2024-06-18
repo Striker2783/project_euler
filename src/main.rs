@@ -1,6 +1,6 @@
 use std::env::args;
 
-use project_euler::{self, run};
+use project_euler::{self, problems::one_hundred::run_all, run};
 
 fn main() {
     let mut args = args();
@@ -14,7 +14,8 @@ fn main() {
             }
         },
         None => {
-            eprintln!("Insert a number");
+            eprintln!("Running all");
+            run_all();
             return;
         }
     };

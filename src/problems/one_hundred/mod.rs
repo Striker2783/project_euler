@@ -94,3 +94,8 @@ pub fn run(n: u32) {
     }
     SOLVERS[(n - 1) as usize]();
 }
+pub fn run_all() {
+    for f in SOLVERS {
+        f()
+    }
+}
