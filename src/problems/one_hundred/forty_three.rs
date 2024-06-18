@@ -1,8 +1,8 @@
 pub fn run() {
-    let mut permutations = Permutations::new([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
-    for p in permutations {
-        println!("{p:?}");
-    }
+    // let mut permutations = Permutations::new([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
+    // for p in permutations {
+    //     println!("{p:?}");
+    // }
 }
 
 struct Permutations<T: Default + Copy, const N: usize> {

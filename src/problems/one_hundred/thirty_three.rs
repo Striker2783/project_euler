@@ -18,8 +18,6 @@ fn solve() -> u32 {
         .collect();
     let numerator: u32 = fracs.iter().map(|x| x.0).product();
     let den: u32 = fracs.iter().map(|x| x.1).product();
-    println!("{:?}", fracs);
-    println!("{:?}", reduce(numerator, den));
     reduce(numerator, den).1
 }
 

@@ -6,7 +6,7 @@ use std::{
 
 pub fn eight() {
     const MAX_ADJACENT: usize = 13;
-    let test = read_txt_into_nums("Files\\eight.txt");
+    let test = read_txt_into_nums("Files/eight.txt");
     let closure = |x: Vec<u32>| -> u64 {
         let mut largest: u64 = 0;
         for (i, v) in x.iter().enumerate() {
