@@ -1,30 +1,44 @@
 pub mod number_series;
 
 pub const SMALL_PRIMES: &[u32] = &[2, 3, 5, 7, 11, 13, 17, 19, 23, 29];
+const PRIME_CHECKED: [u32; 4] = [2, 0, 3, 5];
+#[derive(Default)]
+struct PrimeChecked {
+    last: u32,
+    alt: bool,
+}
+impl Iterator for PrimeChecked {
+    type Item = u32;
+
+    fn next(&mut self) -> Option<Self::Item> {
+        if (self.last as usize) < PRIME_CHECKED.len() {
+            self.last = PRIME_CHECKED[self.last as usize];
+            return Some(self.last);
+        }
+        self.alt = !self.alt;
+        if self.alt {
+            self.last += 2;
+        } else {
+            self.last += 4;
+        }
+        Some(self.last)
+    }
+}
 
 pub fn is_prime(n: u32) -> bool {
     if n == 0 || n == 1 {
         return false;
-    } else if n == 2 || n == 3 {
-        return true;
-    } else if n % 2 == 0 || n % 3 == 0 {
-        return false;
     }
-    let mut k: u32 = 0;
-    loop {
-        let n1 = 6 * k + 7;
-        let n2 = 6 * k + 5;
+    let mut nums = PrimeChecked::default();
+    while let Some(n2) = nums.next() {
         if n2 * n2 > n {
-            return true;
-        }
-        if n % n1 == 0 {
-            return false;
+            break;
         }
         if n % n2 == 0 {
             return false;
         }
-        k += 1;
     }
+    true
 }
 pub fn num_len(mut n: u32) -> u32 {
     let mut len = 0;
