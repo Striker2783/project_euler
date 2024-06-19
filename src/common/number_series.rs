@@ -15,7 +15,7 @@ impl Primes {
     }
     pub fn is_prime(&mut self, n: u32) -> bool {
         if n == 1 || n == 0 {
-            false;
+            return false;
         }
         while n >= self.vec.last().get_or_insert(&0).pow(2) {
             self.add_prime();
