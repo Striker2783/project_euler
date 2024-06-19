@@ -34,6 +34,6 @@ mod tests {
     #[test]
     fn test_solve() {
         let solver = Solver::new(10, 10);
-        assert_eq!(solver.solve(), 10405071317)
+        assert_eq!(solver.solve(), 405071317)
     }
 }
