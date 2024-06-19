@@ -1,23 +1,17 @@
+use crate::common::number_series::Primes;
+
 pub fn run() {
     println!("{}", solve(1_000_000));
 }
 
 fn solve(max: u32) -> u32 {
-    (2..max).filter(|&n| is_circular_prime(n)).count() as u32
+    let mut primes = Primes::default();
+    (2..max)
+        .filter(|&n| is_circular_prime(n, &mut primes))
+        .count() as u32
 }
 
-fn is_prime(n: u32) -> bool {
-    let mut i = 2;
-    while i * i <= n {
-        if n % i == 0 {
-            return false;
-        }
-        i += 1;
-    }
-    true
-}
-
-fn is_circular_prime(mut n: u32) -> bool {
+fn is_circular_prime(mut n: u32, primes: &mut Primes) -> bool {
     let mut digits = vec![];
     while n > 0 {
         digits.push(n % 10);
@@ -29,7 +23,7 @@ fn is_circular_prime(mut n: u32) -> bool {
             let j = (i + j) % digits.len();
             n = n * 10 + digits[j];
         }
-        if !is_prime(n) {
+        if !primes.is_prime(n) {
             return false;
         }
     }
@@ -38,12 +32,16 @@ fn is_circular_prime(mut n: u32) -> bool {
 
 #[cfg(test)]
 mod tests {
-    use crate::problems::one_hundred::thirty_five::{is_circular_prime, solve};
+    use crate::{
+        common::number_series::Primes,
+        problems::one_hundred::thirty_five::{is_circular_prime, solve},
+    };
 
     #[test]
     fn test_is_circular_prime() {
-        assert!(is_circular_prime(197));
-        assert!(is_circular_prime(97));
+        let mut primes = Primes::default();
+        assert!(is_circular_prime(197, &mut primes));
+        assert!(is_circular_prime(97, &mut primes));
     }
     #[test]
     fn test_solve() {
