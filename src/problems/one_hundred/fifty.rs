@@ -6,6 +6,7 @@ pub fn run() {
 fn solve(max: u32) -> u32 {
     let mut max_prime = 0;
     let mut max_len = 0;
+    let mut prime_iter = Primes::default();
     let primes: Vec<_> = Primes::default().take_while(|&p| p < max).collect();
     let mut sum = 2;
     let (mut left, mut right) = (0, 1);
@@ -17,7 +18,7 @@ fn solve(max: u32) -> u32 {
             sum -= primes[left];
             left += 1;
         }
-        if (right - left) > max_len && is_prime(sum) {
+        if (right - left) > max_len && prime_iter.is_prime(sum) {
             max_len = right - left;
             max_prime = sum;
         }
@@ -32,5 +33,6 @@ mod tests {
     fn test_solve() {
         assert_eq!(solve(100), 41);
         assert_eq!(solve(1000), 953);
+        assert_eq!(solve(1000000), 997651);
     }
 }
