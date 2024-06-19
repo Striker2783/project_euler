@@ -1,24 +1,21 @@
+use super::PrimeChecked;
+
 /**
  * A very basic implementation of primes
  */
-pub struct Primes(u32);
+#[derive(Default)]
+pub struct Primes(PrimeChecked);
 impl Primes {
     pub fn reset(&mut self) {
-        self.0 = 1;
-    }
-}
-impl Default for Primes {
-    fn default() -> Self {
-        Self(1)
+        self.0.reset();
     }
 }
 impl Iterator for Primes {
     type Item = u32;
 
     fn next(&mut self) -> Option<Self::Item> {
-        for i in (self.0 + 1).. {
+        while let Some(i) = self.0.next() {
             if super::is_prime(i) {
-                self.0 = i;
                 return Some(i);
             }
         }

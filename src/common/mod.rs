@@ -7,6 +7,12 @@ struct PrimeChecked {
     last: u32,
     alt: bool,
 }
+impl PrimeChecked {
+    pub fn reset(&mut self) {
+        self.last = 0;
+        self.alt = false;
+    }
+}
 impl Iterator for PrimeChecked {
     type Item = u32;
 
