@@ -41,7 +41,7 @@ mod tests {
     use std::collections::HashSet;
 
     use super::{consecutive_primes, solve};
-    use crate::common::number_series::Primes;
+    use common::number_series::Primes;
 
     #[test]
     fn test_consecutive_primes() {

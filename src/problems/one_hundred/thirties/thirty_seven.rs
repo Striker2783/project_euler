@@ -1,4 +1,4 @@
-use crate::common::is_prime;
+use common::is_prime;
 
 pub fn run() {
     println!("{}", solve());

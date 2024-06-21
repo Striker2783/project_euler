@@ -1,4 +1,4 @@
-use crate::common::SMALL_PRIMES;
+use common::SMALL_PRIMES;
 
 pub fn run() {
     let mut permutations = Permutations::new([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);

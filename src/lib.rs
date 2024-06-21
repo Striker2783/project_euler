@@ -1,4 +1,3 @@
-pub mod common;
 pub(crate) mod macros;
 pub mod problems;
 

@@ -1,6 +1,6 @@
 use std::{collections::HashSet, ops::Range};
 
-use crate::common::get_digits;
+use common::get_digits;
 
 pub fn run() {
     println!("{}", Solver::new(6).solve())

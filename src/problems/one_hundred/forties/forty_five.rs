@@ -1,3 +1,5 @@
+use common::shape_numbers::{Hexagonal, Pentagonal, Triangular};
+
 pub fn run() {
     let mut solver = Solver::default();
     solver.next();
@@ -50,23 +52,6 @@ macro_rules! shape_numbers {
         }
     };
 }
-
-shape_numbers!(Triangular, triangle);
-#[inline(always)]
-fn triangle(n: u32) -> Option<u32> {
-    Some(n.checked_mul(n + 1)? / 2)
-}
-shape_numbers!(Pentagonal, pentagonal);
-#[inline(always)]
-fn pentagonal(n: u32) -> Option<u32> {
-    Some(n.checked_mul(3 * n - 1)? / 2)
-}
-shape_numbers!(Hexagonal, hexagonal);
-#[inline(always)]
-fn hexagonal(n: u32) -> Option<u32> {
-    n.checked_mul(2 * n - 1)
-}
-
 #[cfg(test)]
 mod tests {
     use super::{Hexagonal, Pentagonal, Solver, Triangular};
@@ -78,19 +63,4 @@ mod tests {
             assert_eq!(solver.next().unwrap(), expected)
         }
     }
-
-    macro_rules! test_shapes {
-        ($name:ident, $shape: ident, $values: expr) => {
-            #[test]
-            fn $name() {
-                let mut shape = $shape::default();
-                for expected in $values {
-                    assert_eq!(shape.next().unwrap(), expected);
-                }
-            }
-        };
-    }
-    test_shapes!(test_triangle, Triangular, [1, 3, 6, 10, 15]);
-    test_shapes!(test_pentagon, Pentagonal, [1, 5, 12, 22, 35]);
-    test_shapes!(test_hexagon, Hexagonal, [1, 6, 15, 28, 45]);
 }

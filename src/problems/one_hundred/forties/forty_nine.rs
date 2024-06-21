@@ -2,7 +2,7 @@ use std::{collections::HashMap, result};
 
 use num::pow::Pow;
 
-use crate::common::number_series::Primes;
+use common::number_series::Primes;
 
 pub fn run() {
     let mut solver = Solver::default();

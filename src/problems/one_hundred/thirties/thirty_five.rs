@@ -1,4 +1,4 @@
-use crate::common::number_series::Primes;
+use common::number_series::Primes;
 
 pub fn run() {
     println!("{}", solve(1_000_000));
@@ -33,7 +33,7 @@ fn is_circular_prime(mut n: u32, primes: &mut Primes) -> bool {
 #[cfg(test)]
 mod tests {
     use super::{is_circular_prime, solve};
-    use crate::common::number_series::Primes;
+    use common::number_series::Primes;
 
     #[test]
     fn test_is_circular_prime() {

@@ -1,6 +1,6 @@
 use num::traits::Pow;
 
-use crate::common::num_len;
+use common::num_len;
 
 const MAX: u32 = 10u32.pow(4);
 pub fn run() {

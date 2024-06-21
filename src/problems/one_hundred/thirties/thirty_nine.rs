@@ -1,6 +1,6 @@
 use std::collections::{HashMap, HashSet};
 
-use crate::common::number_series::Squares;
+use common::number_series::Squares;
 
 const MAX: u32 = 1000;
 pub fn run() {

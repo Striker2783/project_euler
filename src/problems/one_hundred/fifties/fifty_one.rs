@@ -1,6 +1,6 @@
 use std::collections::VecDeque;
 
-use crate::common::number_series::Primes;
+use common::number_series::Primes;
 
 pub fn run() {
     let mut solver = Solver::new(8);

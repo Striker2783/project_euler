@@ -1,4 +1,4 @@
-use crate::common::is_prime;
+use common::is_prime;
 
 const DIGITS: [u32; 7] = [1, 2, 3, 4, 5, 6, 7];
 struct Solver {

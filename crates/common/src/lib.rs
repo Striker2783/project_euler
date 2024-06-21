@@ -1,4 +1,5 @@
 pub mod number_series;
+pub mod shape_numbers;
 
 pub const SMALL_PRIMES: &[u32] = &[2, 3, 5, 7, 11, 13, 17, 19, 23, 29];
 const PRIME_CHECKED: [u32; 4] = [2, 0, 3, 5];
@@ -66,7 +67,7 @@ pub fn get_digits(mut n: u64) -> [u8; 10] {
 
 #[cfg(test)]
 mod tests {
-    use crate::common::is_prime;
+    use common::is_prime;
     #[test]
     fn test_is_prime() {
         let primes = [2, 3, 5, 53, 97];

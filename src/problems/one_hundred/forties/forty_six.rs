@@ -1,6 +1,6 @@
 use std::collections::HashSet;
 
-use crate::common::number_series::{Primes, Squares};
+use common::number_series::{Primes, Squares};
 
 pub fn run() {
     let mut solver = Solver::default();

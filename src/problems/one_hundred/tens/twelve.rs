@@ -1,20 +1,7 @@
-#[derive(Default)]
-struct Triangle {
-    sum: u64,
-    i: u64,
-}
+use common::shape_numbers::Triangular;
 
-impl Iterator for Triangle {
-    type Item = u64;
-
-    fn next(&mut self) -> Option<Self::Item> {
-        self.i += 1;
-        self.sum += self.i;
-        Some(self.sum)
-    }
-}
-fn get_something(max_divisors: u32) -> u64 {
-    let mut tri = Triangle::default();
+fn get_something(max_divisors: u32) -> u32 {
+    let mut tri = Triangular::default();
     loop {
         let n = tri.next().unwrap();
         let mut divisors = 0;
@@ -41,18 +28,6 @@ pub fn run() {
 #[cfg(test)]
 mod test {
     use super::get_something;
-
-    use super::Triangle;
-
-    #[test]
-    fn triangle() {
-        let mut tri = Triangle::default();
-        assert_eq!(tri.next(), Some(1));
-        assert_eq!(tri.next(), Some(3));
-        assert_eq!(tri.next(), Some(6));
-        assert_eq!(tri.next(), Some(10));
-        assert_eq!(tri.next(), Some(15));
-    }
     #[test]
     fn run() {
         assert_eq!(get_something(5), 28)
