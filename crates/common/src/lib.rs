@@ -1,3 +1,5 @@
+use std::ops::Div;
+
 pub mod number_series;
 pub mod shape_numbers;
 
@@ -64,10 +66,41 @@ pub fn get_digits(mut n: u64) -> [u8; 10] {
     }
     digits
 }
+/**
+ * Returns a max of `u64::MAX`
+ */
+pub fn combinations(n: u32, r: u32) -> u64 {
+    let min = r.min(n - r);
+    let max = r.max(n - r);
+    let mut n_mul = max + 1;
+    let mut d_mul = 2;
+    let mut product = 1;
+    while n_mul <= n {
+        if let Some(a) = (n_mul as u64).checked_mul(product) {
+            product = a;
+            n_mul += 1;
+            continue;
+        }
+        if d_mul > min {
+            for i in n_mul..=n {
+                product = product.saturating_mul(i as u64);
+            }
+            break;
+        }
+        product /= d_mul as u64;
+        d_mul += 1;
+    }
+    for i in d_mul..=min {
+        product = product.div(i as u64);
+    }
+    product
+}
 
 #[cfg(test)]
 mod tests {
-    use common::is_prime;
+    use super::is_prime;
+
+    use super::combinations;
     #[test]
     fn test_is_prime() {
         let primes = [2, 3, 5, 53, 97];
@@ -78,5 +111,10 @@ mod tests {
         for np in non_primes {
             assert!(!is_prime(np))
         }
+    }
+    #[test]
+    fn test_combinations() {
+        assert_eq!(combinations(5, 3), 10);
+        assert_eq!(combinations(23, 10), 1144066);
     }
 }
