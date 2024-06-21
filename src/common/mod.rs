@@ -55,6 +55,15 @@ pub fn num_len(mut n: u32) -> u32 {
     len
 }
 
+pub fn get_digits(mut n: u64) -> [u8; 10] {
+    let mut digits = [0; 10];
+    while n > 0 {
+        digits[(n % 10) as usize] += 1;
+        n /= 10;
+    }
+    digits
+}
+
 #[cfg(test)]
 mod tests {
     use crate::common::is_prime;
