@@ -30,40 +30,53 @@ impl Iterator for Collatz {
     }
 }
 
-fn longest_chain(max: u64) -> u64 {
-    let (mut num, mut max_chain) = (0, 0u64);
-    let mut map = HashMap::new();
-    for n in 2..max {
-        let length = get_chain_length(n, &mut map);
-        if length > max_chain {
-            max_chain = length;
-            num = n;
-        }
-    }
-    num
+struct Solver {
+    fast: Vec<u32>,
 }
 
-fn get_chain_length(n: u64, map: &mut HashMap<u64, u64>) -> u64 {
-    let mut stack = vec![];
-    let mut collatz = Collatz::new(n);
-    let mut chain = 1;
-    while (!collatz.is_loop()) {
-        let curr = collatz.next().unwrap();
-        if let Some(&ch) = map.get(&curr) {
-            chain = ch;
-            break;
+impl<'a> Solver {
+    fn new(size: usize) -> Self {
+        Self {
+            fast: vec![0; size],
         }
-        stack.push(curr);
     }
-    while let Some(n) = stack.pop() {
-        chain += 1;
-        map.insert(n, chain);
+    fn solve(&mut self, max: u64) -> u64 {
+        let (mut num, mut max_chain) = (0, 0u32);
+        for n in 2..max {
+            let length = self.get_chain_length(n);
+            if length > max_chain {
+                max_chain = length;
+                num = n;
+            }
+        }
+        num
     }
-    chain
+    fn get_chain_length(&mut self, n: u64) -> u32 {
+        let mut stack = vec![];
+        let mut collatz = Collatz::new(n);
+        let mut chain = 1;
+        while (!collatz.is_loop()) {
+            let curr = collatz.next().unwrap();
+            if (curr as usize) < self.fast.len() {
+                if self.fast[curr as usize] != 0 {
+                    chain = self.fast[curr as usize];
+                    break;
+                }
+            }
+            stack.push(curr);
+        }
+        for v in stack {
+            chain += 1;
+            if (n as usize) < self.fast.len() {
+                self.fast[n as usize] = chain;
+            }
+        }
+        chain
+    }
 }
 
 pub fn run() {
-    let x = longest_chain(1_000_000);
+    let x = Solver::new(1_000_000).solve(1_000_000);
     println!("{x}");
 }
 
@@ -71,7 +84,7 @@ pub fn run() {
 mod test {
     use std::collections::HashMap;
 
-    use crate::problems::one_hundred::fourteen::get_chain_length;
+    use crate::fourteen::Solver;
 
     use super::Collatz;
 
@@ -90,8 +103,12 @@ mod test {
     }
     #[test]
     fn test_get_chain_length() {
-        let mut map = HashMap::new();
-        assert_eq!(get_chain_length(13, &mut map), 10);
-        assert_eq!(get_chain_length(40, &mut map), 9);
+        let mut solver = Solver::new(10);
+        assert_eq!(solver.get_chain_length(13), 10);
+        assert_eq!(solver.get_chain_length(40), 9);
+    }
+    #[test]
+    fn test_solve() {
+        assert_eq!(Solver::new(1_000_000).solve(1_000_000), 837799);
     }
 }
