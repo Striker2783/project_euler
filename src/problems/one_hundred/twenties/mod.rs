@@ -1,3 +1,5 @@
+use crate::macros::tens;
+
 pub mod twenty;
 pub mod twenty_eight;
 pub mod twenty_five;
@@ -9,7 +11,7 @@ pub mod twenty_six;
 pub mod twenty_three;
 pub mod twenty_two;
 
-const F: &[fn()] = &[
+tens!(&[
     twenty::run,
     twenty_one::run,
     twenty_two::run,
@@ -20,8 +22,4 @@ const F: &[fn()] = &[
     twenty_seven::run,
     twenty_eight::run,
     twenty_nine::run,
-];
-
-pub unsafe fn run(n: usize) {
-    F[n]()
-}
+]);

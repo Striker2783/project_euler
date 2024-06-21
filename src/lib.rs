@@ -1,4 +1,5 @@
 pub mod common;
+pub(crate) mod macros;
 pub mod problems;
 
 use problems::one_hundred::{self};

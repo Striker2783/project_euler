@@ -5,7 +5,7 @@ pub mod tens;
 pub mod thirties;
 pub mod twenties;
 
-const SOLVERS: &[unsafe fn(usize)] = &[
+const SOLVERS: &[fn(usize)] = &[
     ones::run,
     tens::run,
     twenties::run,
