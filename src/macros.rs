@@ -1,11 +1,17 @@
 macro_rules! tens {
     ($f: expr) => {
         const F: &[fn()] = $f;
-        pub fn run(n: usize) {
-            if n >= F.len() {
-                return;
+        pub fn run(n: Option<usize>) {
+            if let Some(n) = n {
+                if n >= F.len() {
+                    return;
+                }
+                F[n]();
+            } else {
+                for f in F {
+                    f();
+                }
             }
-            F[n]()
         }
     };
 }

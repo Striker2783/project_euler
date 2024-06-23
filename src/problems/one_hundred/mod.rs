@@ -5,7 +5,7 @@ pub mod tens;
 pub mod thirties;
 pub mod twenties;
 
-const SOLVERS: &[fn(usize)] = &[
+const SOLVERS: &[fn(Option<usize>)] = &[
     ones::run,
     tens::run,
     twenties::run,
@@ -19,7 +19,11 @@ pub fn run(n: usize) {
         return;
     }
     unsafe {
-        SOLVERS[(n / 10) as usize](n % 10);
+        SOLVERS[(n / 10) as usize](Some(n % 10));
     }
 }
-pub fn run_all() {}
+pub fn run_all() {
+    for s in SOLVERS {
+        s(None);
+    }
+}
