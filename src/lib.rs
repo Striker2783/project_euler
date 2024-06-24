@@ -1,3 +1,7 @@
+#![feature(test)]
+
+extern crate test;
+
 pub(crate) mod macros;
 pub mod problems;
 
