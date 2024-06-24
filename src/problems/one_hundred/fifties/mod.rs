@@ -4,6 +4,7 @@ pub mod fifty;
 pub mod fifty_five;
 pub mod fifty_four;
 pub mod fifty_one;
+pub mod fifty_seven;
 pub mod fifty_six;
 pub mod fifty_three;
 pub mod fifty_two;
@@ -16,4 +17,5 @@ tens!(&[
     fifty_four::run,
     fifty_five::run,
     fifty_six::run,
+    fifty_seven::run,
 ]);
