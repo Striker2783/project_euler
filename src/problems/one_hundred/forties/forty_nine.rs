@@ -55,7 +55,7 @@ impl Solver {
         None
     }
     fn fill_map(&mut self) {
-        for p in Primes::default() {
+        for p in Primes::<u32>::default() {
             if p < 10u32.pow(3) {
                 continue;
             } else if p >= 10u32.pow(4) {

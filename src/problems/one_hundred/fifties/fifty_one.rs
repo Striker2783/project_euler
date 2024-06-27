@@ -10,7 +10,7 @@ pub fn run() {
 struct Solver {
     generator: Generator,
     max: usize,
-    primes: Primes,
+    primes: Primes<u32>,
 }
 impl Solver {
     fn new(max: usize) -> Self {

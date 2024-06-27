@@ -45,9 +45,7 @@ mod tests {
 
     #[test]
     fn test_consecutive_primes() {
-        let primes = Primes::default()
-            .take_while(|x| *x < 1_000_000)
-            .map(|x| x as u64);
+        let primes = Primes::<u64>::default().take_while(|x| *x < 1_000_000);
         let mut primes_s = HashSet::new();
         primes.for_each(|n| {
             primes_s.insert(n);

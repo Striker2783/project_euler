@@ -6,8 +6,8 @@ pub fn run() {
 fn solve(max: u32) -> u32 {
     let mut max_prime = 0;
     let mut max_len = 0;
-    let mut prime_iter = Primes::default();
-    let primes: Vec<_> = Primes::default().take_while(|&p| p < max).collect();
+    let mut prime_iter: Primes<u32> = Primes::default();
+    let primes: Vec<_> = Primes::<u32>::default().take_while(|&p| p < max).collect();
     let mut sum = 2;
     let (mut left, mut right) = (0, 1);
     while left <= right && right < primes.len() && left < primes.len() {

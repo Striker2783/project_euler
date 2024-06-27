@@ -10,7 +10,7 @@ pub fn run() {
 #[derive(Default)]
 struct Solver {
     distinct_primes: usize,
-    primes: Primes,
+    primes: Primes<u32>,
     p_last: u32,
     p_set: HashSet<u32>,
 }
@@ -43,7 +43,7 @@ impl Solver {
             self.p_set.insert(self.p_last);
         }
         let mut set = HashSet::new();
-        let mut primes = Primes::default();
+        let mut primes: Primes<u32> = Primes::default();
         while let Some(prime) = primes.next() {
             if prime * prime >= n {
                 break;

@@ -11,7 +11,7 @@ fn solve(max: u32) -> u32 {
         .count() as u32
 }
 
-fn is_circular_prime(mut n: u32, primes: &mut Primes) -> bool {
+fn is_circular_prime(mut n: u32, primes: &mut Primes<u32>) -> bool {
     let mut digits = vec![];
     while n > 0 {
         digits.push(n % 10);

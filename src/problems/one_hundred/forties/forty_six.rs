@@ -7,7 +7,7 @@ pub fn run() {
     println!("{}", solver.next().unwrap()); // 5777
 }
 struct Solver {
-    primes: Primes,
+    primes: Primes<u32>,
     last_prime: u32,
     p_set: HashSet<u32>,
     squares: Squares,

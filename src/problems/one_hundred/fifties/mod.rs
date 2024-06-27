@@ -1,6 +1,7 @@
 use crate::macros::tens;
 
 pub mod fifty;
+pub mod fifty_eight;
 pub mod fifty_five;
 pub mod fifty_four;
 pub mod fifty_one;
@@ -18,4 +19,5 @@ tens!(&[
     fifty_five::run,
     fifty_six::run,
     fifty_seven::run,
+    fifty_eight::run,
 ]);

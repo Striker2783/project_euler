@@ -4,41 +4,46 @@ pub mod number_series;
 pub mod shape_numbers;
 
 pub const SMALL_PRIMES: &[u32] = &[2, 3, 5, 7, 11, 13, 17, 19, 23, 29];
-const PRIME_CHECKED: [u32; 4] = [2, 0, 3, 5];
 #[derive(Default)]
-struct PrimeChecked {
-    last: u32,
+struct PrimeChecked<T> {
+    last: T,
     alt: bool,
 }
-impl PrimeChecked {
+impl<T: Default> PrimeChecked<T> {
     pub fn reset(&mut self) {
-        self.last = 0;
+        self.last = Default::default();
         self.alt = false;
     }
 }
-impl Iterator for PrimeChecked {
-    type Item = u32;
+macro_rules! PrimeCheckedIterator {
+    ($type:ident) => {
+        impl Iterator for PrimeChecked<$type> {
+            type Item = $type;
 
-    fn next(&mut self) -> Option<Self::Item> {
-        if (self.last as usize) < PRIME_CHECKED.len() {
-            self.last = PRIME_CHECKED[self.last as usize];
-            return Some(self.last);
+            fn next(&mut self) -> Option<Self::Item> {
+                if (self.last as usize) < 4 {
+                    self.last = [2, 0, 3, 5][self.last as usize];
+                    return Some(self.last);
+                }
+                self.alt = !self.alt;
+                if self.alt {
+                    self.last += 2;
+                } else {
+                    self.last += 4;
+                }
+                Some(self.last)
+            }
         }
-        self.alt = !self.alt;
-        if self.alt {
-            self.last += 2;
-        } else {
-            self.last += 4;
-        }
-        Some(self.last)
-    }
+    };
 }
+PrimeCheckedIterator!(u32);
+PrimeCheckedIterator!(u64);
 
 pub fn is_prime(n: u32) -> bool {
     if n == 0 || n == 1 {
         return false;
     }
-    let mut nums = PrimeChecked::default();
+    let mut nums: PrimeChecked<u32> = PrimeChecked::default();
     while let Some(n2) = nums.next() {
         if n2 * n2 > n {
             break;
