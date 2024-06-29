@@ -117,13 +117,20 @@ SpiralIterator!(u32);
 SpiralIterator!(u64);
 #[cfg(test)]
 mod tests {
+    use test::{black_box, Bencher};
+
     use super::{Primes, Spiral, Squares};
+
+    #[bench]
+    fn bench_primes(b: &mut Bencher) {
+        b.iter(|| black_box(Primes::<u64>::default().take(1000).for_each(|_| {})))
+    }
 
     macro_rules! test {
         ($name:ident, $series:ident,$value:expr) => {
             #[test]
             fn $name() {
-                let mut series = $series::default();
+                let mut series = $series::<u32>::default();
                 for v in $value {
                     assert_eq!(series.next(), Some(v))
                 }
@@ -131,6 +138,12 @@ mod tests {
         };
     }
     test!(test_primes, Primes, [2, 3, 5, 7, 11, 13, 17, 19, 23]);
-    test!(test_squares, Squares, [1, 4, 9, 16, 25, 36, 49, 64, 81]);
+    #[test]
+    fn test_squares() {
+        let mut series = Squares::default();
+        for v in [1, 4, 9, 16, 25, 36, 49, 64, 81] {
+            assert_eq!(series.next(), Some(v))
+        }
+    }
     test!(test_spiral, Spiral, [1, 3, 5, 7, 9, 13, 17, 21]);
 }
