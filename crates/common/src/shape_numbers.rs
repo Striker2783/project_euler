@@ -30,3 +30,13 @@ shape_numbers!(Hexagonal, hexagonal);
 fn hexagonal(n: u32) -> Option<u32> {
     n.checked_mul(2 * n - 1)
 }
+shape_numbers!(Heptagonal, heptagonal);
+#[inline(always)]
+fn heptagonal(n: u32) -> Option<u32> {
+    Some(n.checked_mul(n.checked_mul(5)? - 3)? / 2)
+}
+shape_numbers!(Octagonal, octagonal);
+#[inline(always)]
+fn octagonal(n: u32) -> Option<u32> {
+    n.checked_mul(n.checked_mul(3)? - 2)
+}
