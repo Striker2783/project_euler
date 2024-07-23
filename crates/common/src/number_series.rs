@@ -75,6 +75,24 @@ impl Iterator for Squares {
         self.0.checked_mul(self.0)
     }
 }
+#[derive(Default)]
+pub struct Cubes<T>(T);
+impl Iterator for Cubes<u32> {
+    type Item = u32;
+
+    fn next(&mut self) -> Option<Self::Item> {
+        self.0 += 1;
+        self.0.checked_pow(3)
+    }
+}
+impl Iterator for Cubes<u64> {
+    type Item = u64;
+
+    fn next(&mut self) -> Option<Self::Item> {
+        self.0 += 1;
+        self.0.checked_pow(3)
+    }
+}
 pub struct Spiral<T> {
     side: T,
     i: T,
