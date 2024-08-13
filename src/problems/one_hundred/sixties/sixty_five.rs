@@ -24,7 +24,7 @@ fn solve(n: usize) -> u32 {
     }
     sum as u32
 }
-fn continued_fraction<T: Iterator<Item = U>, U>(mut iter: T) -> Option<Fraction<U>>
+pub fn continued_fraction<T: Iterator<Item = U>, U>(mut iter: T) -> Option<Fraction<U>>
 where
     U: From<u8> + Mul<Output = U>,
     U: Clone,
@@ -67,10 +67,16 @@ impl Iterator for ECF {
     }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
-struct Fraction<T>(T, T);
+pub struct Fraction<T>(T, T);
 impl<T> Fraction<T> {
-    fn new(num: T, den: T) -> Self {
+    pub fn new(num: T, den: T) -> Self {
         Self(num, den)
+    }
+    pub fn numerator(&self) -> &T {
+        &self.0
+    }
+    pub fn denominator(&self) -> &T {
+        &self.1
     }
     pub fn inverse(&mut self) {
         swap(&mut self.0, &mut self.1);
