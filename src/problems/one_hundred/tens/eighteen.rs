@@ -5,7 +5,7 @@ pub fn run() {
     println!("{}", pyramid.max_path());
 }
 
-struct Pyramid(Vec<Vec<u32>>);
+pub struct Pyramid(Vec<Vec<u32>>);
 impl Pyramid {
     pub fn new(vec: Vec<Vec<u32>>) -> Self {
         Self(vec)
