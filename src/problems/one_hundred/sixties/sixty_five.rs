@@ -134,7 +134,7 @@ where
     }
 }
 
-fn gcf<T>(mut a: T, mut b: T) -> T
+pub fn gcf<T>(mut a: T, mut b: T) -> T
 where
     T: PartialEq + From<u8> + Clone + RemAssign,
 {
