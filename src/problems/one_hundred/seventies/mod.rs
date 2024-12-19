@@ -1,3 +1,4 @@
 use crate::macros::tens;
 mod seventy;
-tens!(&[seventy::run]);
+mod seventy_one;
+tens!(&[seventy::run, seventy_one::run]);
