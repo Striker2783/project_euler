@@ -1,13 +1,13 @@
 use std::mem::swap;
 
 pub fn run() {
-    println!("{}", solve(Fraction(1, 3), Fraction(1,2), 12_000));
+    println!("{}", solve(Fraction(1, 3), Fraction(1, 2), 12_000));
 }
 /// Can be Optimized
 fn solve(min: Fraction, max: Fraction, n: u32) -> i32 {
     let mut count = 0;
     for d in 2..=n {
-        for num in 1..n {
+        for num in min.after(d)..=max.before(d) {
             let f = Fraction(num, d);
             if gcd(num, d) != 1 {
                 continue;
@@ -21,6 +21,15 @@ fn solve(min: Fraction, max: Fraction, n: u32) -> i32 {
 }
 #[derive(Debug, PartialEq, Eq)]
 struct Fraction(u32, u32);
+
+impl Fraction {
+    fn after(&self, d: u32) -> u32 {
+        (self.0 * d) / self.1 + 1
+    }
+    fn before(&self, d: u32) -> u32 {
+        (self.0 * d) / self.1
+    }
+}
 
 impl PartialOrd for Fraction {
     fn partial_cmp(&self, other: &Self) -> Option<std::cmp::Ordering> {
@@ -56,6 +65,6 @@ mod tests {
     }
     #[test]
     fn test_solve() {
-        assert_eq!(solve(Fraction(1, 3), Fraction(1,2), 8), 3);
+        assert_eq!(solve(Fraction(1, 3), Fraction(1, 2), 8), 3);
     }
 }
