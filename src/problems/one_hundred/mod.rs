@@ -6,6 +6,7 @@ pub mod tens;
 pub mod thirties;
 pub mod twenties;
 pub mod seventies;
+pub mod eighties;
 
 const SOLVERS: &[fn(Option<usize>)] = &[
     ones::run,
@@ -15,7 +16,8 @@ const SOLVERS: &[fn(Option<usize>)] = &[
     forties::run,
     fifties::run,
     sixties::run,
-    seventies::run
+    seventies::run,
+    eighties::run,
 ];
 
 pub fn run(n: usize) {
