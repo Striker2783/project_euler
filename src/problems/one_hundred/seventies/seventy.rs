@@ -9,6 +9,9 @@ fn solve(max: u32) -> u32 {
     let mut max_f = f32::MAX;
     let mut max_n = 0;
     for n in 2..max {
+        if n % 2 == 0 || n % 3 == 0 || n % 5 == 0 || n % 7 == 0 {
+            continue;
+        }
         let totient = totient_2(n);
         if is_permutation(totient, n) && max_f > n as f32 / totient as f32 {
             max_f = n as f32 / totient as f32;
