@@ -1,5 +1,5 @@
 pub fn run() {
-    println!("{}", dp(1000000));
+    println!("{}", pentagonal(1000000));
 }
 
 fn dp(d: u64) -> u32 {
@@ -24,4 +24,46 @@ fn dp(d: u64) -> u32 {
         dp.push(vec);
     }
     unreachable!()
+}
+/// Solution based on https://en.wikipedia.org/wiki/Pentagonal_number_theorem#Relation_with_partitions
+fn pentagonal(d: u32) -> u32 {
+    let mut cache = vec![1u32];
+    for i in 1.. {
+        let mut v = 0i32;
+        for k in 1.. {
+            let p = (3 * k * k - k) / 2;
+            if p > i {
+                break;
+            }
+            if k % 2 == 1 {
+                v += cache[i - p] as i32;
+            } else {
+                v -= cache[i - p] as i32;
+            }
+            let p = (3 * k * k + k) / 2;
+            if p > i {
+                break;
+            }
+            if k % 2 == 1 {
+                v += cache[i - p] as i32;
+            } else {
+                v -= cache[i - p] as i32;
+            }
+        }
+        if v.rem_euclid(d as i32) == 0 {
+            return i as u32;
+        }
+        cache.push(v.rem_euclid(d as i32) as u32);
+    }
+    unreachable!()
+}
+
+#[cfg(test)]
+mod tests {
+    use crate::problems::one_hundred::seventies::seventy_eight::{dp, pentagonal};
+
+    #[test]
+    fn test_pentagonal() {
+        assert_eq!(dp(100), pentagonal(100));
+    }
 }
