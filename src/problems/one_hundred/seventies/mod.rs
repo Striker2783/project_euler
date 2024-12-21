@@ -8,6 +8,7 @@ mod seventy_three;
 mod seventy_two;
 mod seventy_seven;
 mod seventy_eight;
+mod seventy_nine;
 tens!(&[
     seventy::run,
     seventy_one::run,
@@ -18,4 +19,5 @@ tens!(&[
     seventy_six::run,
     seventy_seven::run,
     seventy_eight::run,
+    seventy_nine::run,
 ]);
