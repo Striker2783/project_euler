@@ -1,0 +1,79 @@
+use std::collections::HashMap;
+
+pub fn run() {
+    println!("{}", solve(1_000_000))
+}
+/// Brute Force
+fn solve(n: u32) -> u32 {
+    for i in 1.. {
+        let s = size(i);
+        if size(i) > n {
+            return i as u32;
+        }
+        if i % 20 == 0 {
+            println!("{i} {s}");
+        }
+    }
+    unreachable!()
+}
+
+fn size(m: u64) -> u32 {
+    let mut count = 0;
+    for i in 1..=m {
+        for j in 1..=i {
+            for k in 1..=j {
+                let a = i * i + (j + k) * (j + k);
+                let b = j * j + (i + k) * (i + k);
+                let c = k * k + (i + j) * (i + j);
+                let min = a.min(b).min(c);
+                if sqrt(min).is_none() {
+                    continue;
+                }
+                count += 1;
+            }
+        }
+    }
+    count
+}
+
+fn sqrt(n: u64) -> Option<u64> {
+    let mut i = 0;
+    while i * i < n {
+        i += 1;
+    }
+    if i * i == n {
+        Some(i)
+    } else {
+        None
+    }
+}
+
+fn size_2(m: u64) -> u32 {
+    for i in 1..m {
+        for k in i..m {
+            let s = m * m - i * i;
+            let sqrt = sqrt(s);
+            if sqrt.is_none() {
+                continue;
+            }
+
+        }
+    }
+    todo!()
+}
+
+#[cfg(test)]
+mod tests {
+    use crate::problems::one_hundred::eighties::eighty_six::{size, size_2, solve};
+
+    #[test]
+    fn test_solve() {
+        assert_eq!(solve(2059), 100);
+    }
+    #[test]
+    fn test_size() {
+        assert_eq!(size(99),1975);
+        assert_eq!(size(100), 2060);
+        assert_eq!(size(101), size_2(1001));
+    }
+}
