@@ -4,11 +4,16 @@ pub fn run() {
     println!("{}", solve(Fraction(3, 7), 1_000_000).0);
 }
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
 struct Fraction(u64, u64);
 impl Fraction {
     fn get_min(&self, d2: u64) -> Fraction {
         Fraction((self.0 * d2) / self.1, d2)
+    }
+}
+impl PartialOrd for Fraction {
+    fn partial_cmp(&self, other: &Self) -> Option<std::cmp::Ordering> {
+        Some((self.0 * other.1).cmp(&(other.0 * self.1)))
     }
 }
 impl Ord for Fraction {

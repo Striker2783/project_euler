@@ -44,7 +44,7 @@ fn simulate_once(rolls: u32, v: &mut [u32]) {
     let mut doubles = 0;
     let mut rng = rand::thread_rng();
     let mut count = 0;
-    for _ in 0..1_000 {
+    for _ in 0..2_000 {
         let roll1 = rng.gen_range(1..=(rolls as usize));
         let roll2 = rng.gen_range(1..=(rolls as usize));
         if roll1 == roll2 && doubles >= 2 {
