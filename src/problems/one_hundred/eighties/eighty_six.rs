@@ -1,17 +1,35 @@
 use std::collections::HashMap;
 
 pub fn run() {
-    println!("{}", solve(1_000_000))
+    println!("{}", solve_2(1_000_000))
 }
 /// Brute Force
 fn solve(n: u32) -> u32 {
     for i in 1.. {
-        let s = size(i);
-        if size(i) > n {
+        let s = size_2(i);
+        if s > n {
             return i as u32;
         }
-        if i % 20 == 0 {
-            println!("{i} {s}");
+    }
+    unreachable!()
+}
+
+fn solve_2(n: u32) -> u32 {
+    let mut sum = 0;
+    for a in 1.. {
+        for bc in 1..=(2 * a) {
+            let c = match sqrt(a * a + bc * bc) {
+                Some(a) => a,
+                None => continue,
+            };
+            if a > bc {
+                sum += bc as u32 / 2;
+            } else {
+                sum += a as u32 - ((bc as u32 - 1) / 2);
+            }
+        }
+        if sum > n {
+            return a as u32;
         }
     }
     unreachable!()
@@ -49,22 +67,26 @@ fn sqrt(n: u64) -> Option<u64> {
 }
 
 fn size_2(m: u64) -> u32 {
-    for i in 1..m {
-        for k in i..m {
-            let s = m * m - i * i;
-            let sqrt = sqrt(s);
-            if sqrt.is_none() {
-                continue;
+    let mut sum = 0;
+    for a in 1..m {
+        for bc in 1..=(2 * a) {
+            let c = match sqrt(a * a + bc * bc) {
+                Some(a) => a,
+                None => continue,
+            };
+            if a > bc {
+                sum += bc as u32 / 2;
+            } else {
+                sum += a as u32 - ((bc as u32 - 1) / 2);
             }
-
         }
     }
-    todo!()
+    sum
 }
 
 #[cfg(test)]
 mod tests {
-    use crate::problems::one_hundred::eighties::eighty_six::{size, size_2, solve};
+    use crate::problems::one_hundred::eighties::eighty_six::{size, size_2, solve, solve_2};
 
     #[test]
     fn test_solve() {
@@ -72,8 +94,9 @@ mod tests {
     }
     #[test]
     fn test_size() {
-        assert_eq!(size(99),1975);
+        assert_eq!(size(10), size_2(10));
+        assert_eq!(size(99), 1975);
         assert_eq!(size(100), 2060);
-        assert_eq!(size(101), size_2(1001));
+        assert_eq!(size(101), size_2(101));
     }
 }
