@@ -6,6 +6,7 @@ mod eighty_six;
 mod eighty_three;
 mod eighty_two;
 mod eighty_seven;
+mod eighty_eight;
 
 use crate::macros::tens;
 
@@ -18,4 +19,5 @@ tens!(&[
     eighty_five::run,
     eighty_six::run,
     eighty_seven::run,
+    eighty_eight::run,
 ]);
