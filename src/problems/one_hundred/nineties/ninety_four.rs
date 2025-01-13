@@ -1,10 +1,10 @@
 pub fn run() {
     println!("{}", solve(1_000_000_000));
 }
-
+// TODO Optimize
 fn solve(max: u32) -> u64 {
     let mut sum = 0;
-    for n in 1.. {
+    for n in 5.. {
         if 2 * n + (n - 1) >= max {
             break;
         }
@@ -16,9 +16,6 @@ fn solve(max: u32) -> u64 {
         }
         if is_almost(n, n + 1) {
             sum += (2 * n + (n + 1)) as u64;
-        } 
-        if n % 1_000_000 == 0 {
-            println!("{n}");
         }
     }
     sum
@@ -48,20 +45,19 @@ fn is_square(n: u64) -> Option<u64> {
     }
     return None;
 }
-#[inline(always)]
-fn sqrt2(n: u64) {
-    
-}
 
 fn is_almost(a: u32, b: u32) -> bool {
     assert!(a.abs_diff(b) <= 1);
     let (a, b) = (a as u64, b as u64);
-    let c_squared = a * a - (b/2) * (b/2);
+    if b % 2 == 1 {
+        return false;
+    }
+    let c_squared = 4 * a * a - b * b;
     let c = match is_square(c_squared) {
         Some(a) => a,
         None => return false,
     };
-    c % 2 == 0 || b % 2 == 0
+    true
 }
 
 #[cfg(test)]
