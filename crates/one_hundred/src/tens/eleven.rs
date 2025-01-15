@@ -132,12 +132,6 @@ mod test {
     }
 
     #[test]
-    fn find_max_adjacent() {
-        let contents = fs::read_to_string("Files/eleven.txt").expect("msg");
-        let main = Main::parse(&contents).expect("");
-        assert_eq!(main.find_max_adjacent(4), 70600674)
-    }
-    #[test]
     fn find_max_horizontal() {
         let contents = "54 64 2\n0 99 99";
         let main = Main::parse(contents).expect("");

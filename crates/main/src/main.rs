@@ -1,7 +1,5 @@
 use std::env::args;
 
-use project_euler::{self, run_all, run};
-
 fn main() {
     let mut args = args();
     args.next();
@@ -20,4 +18,13 @@ fn main() {
         }
     };
     run(n);
+}
+pub fn run(n: usize) {
+    if n <= 100 {
+        one_hundred::run(n)
+    }
+}
+
+pub fn run_all() {
+    one_hundred::run_all();
 }

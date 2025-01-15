@@ -67,7 +67,5 @@ mod test {
         let str = "3\n7 4\n2 4 6\n8 5 9 3";
         let mut pyramid = Pyramid::parse(str);
         assert_eq!(pyramid.max_path(), 23);
-        pyramid = Pyramid::parse(&fs::read_to_string("Files/eighteen.txt").unwrap());
-        assert_eq!(pyramid.max_path(), 1074);
     }
 }

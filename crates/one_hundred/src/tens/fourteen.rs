@@ -84,7 +84,7 @@ pub fn run() {
 mod test {
     use std::collections::HashMap;
 
-    use crate::one_hundred::tens::fourteen::Solver;
+    use crate::tens::fourteen::Solver;
 
     use super::Collatz;
 

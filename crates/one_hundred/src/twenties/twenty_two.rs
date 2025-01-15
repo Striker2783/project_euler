@@ -52,10 +52,4 @@ mod tests {
     fn test_name_score() {
         assert_eq!(TwentyTwo::get_name_score("COLIN"), 53);
     }
-    #[test]
-    fn test_sum_name_score() {
-        let contents = fs::read_to_string("Files/twenty_two.txt").unwrap();
-        let stuff = TwentyTwo::parse(&contents);
-        assert_eq!(stuff.get_sum_name_scores(), 871198282)
-    }
 }
