@@ -1,6 +1,6 @@
 use std::env::args;
 
-use project_euler::{self, problems::one_hundred::run_all, run};
+use project_euler::{self, run_all, run};
 
 fn main() {
     let mut args = args();

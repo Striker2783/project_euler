@@ -2,13 +2,12 @@
 
 extern crate test;
 
-pub(crate) mod macros;
-pub mod problems;
-
-use problems::one_hundred::{self};
-
 pub fn run(n: usize) {
     if n <= 100 {
         one_hundred::run(n)
     }
+}
+
+pub fn run_all() {
+    one_hundred::run_all();
 }

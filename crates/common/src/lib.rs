@@ -7,6 +7,7 @@ use std::ops::Div;
 pub mod number_series;
 pub mod shape_numbers;
 pub mod sieve;
+pub mod macros;
 
 pub const SMALL_PRIMES: &[u32] = &[2, 3, 5, 7, 11, 13, 17, 19, 23, 29];
 #[derive(Default)]
