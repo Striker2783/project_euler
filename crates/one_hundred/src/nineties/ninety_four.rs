@@ -1,7 +1,6 @@
 pub fn run() {
-    println!("{}", solve(1_000_000_000));
+    println!("{}", solve2(1_000_000_000));
 }
-// TODO Optimize
 fn solve(max: u32) -> u64 {
     let mut sum = 0;
     for n in 5.. {
@@ -9,14 +8,36 @@ fn solve(max: u32) -> u64 {
             break;
         }
         if is_almost(n, n - 1) {
+            println!("{n} {}", n - 1);
             sum += (2 * n + (n - 1)) as u64;
         }
         if 2 * n + (n + 1) >= max {
             break;
         }
         if is_almost(n, n + 1) {
+            println!("{n} {}", n + 1);
             sum += (2 * n + (n + 1)) as u64;
         }
+    }
+    sum
+}
+/// Alternating from https://oeis.org/A120893
+fn solve2(max: u32) -> u64 {
+    let mut b = true;
+    let mut prev = [1, 1, 5];
+    let mut sum = 16;
+    while prev[2] <= max / 3 {
+        let next = 3 * prev[2] + 3 * prev[1] - prev[0];
+        prev[0] = prev[1];
+        prev[1] = prev[2];
+        prev[2] = next;
+        if next * 3 > max {break;}
+        if b {
+            sum += next as u64 * 3 - 1;
+        } else {
+            sum += next as u64 * 3 + 1;
+        }
+        b = !b;
     }
     sum
 }
