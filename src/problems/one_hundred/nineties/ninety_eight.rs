@@ -147,11 +147,9 @@ impl Words {
                         let b = to_num2(&b);
                         if is_square(b) {
                             let a = to_num2(&a);
-                            println!("{a} {b}");
                             max = a.max(b).max(max);
                         }
                     }
-                    println!("{} {}", v[i], v[j]);
                 }
             }
         }
