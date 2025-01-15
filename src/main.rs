@@ -20,11 +20,14 @@ fn main() {
     run(n);
 }
 pub fn run(n: usize) {
-    if n <= 100 {
+    if n < 100 {
         one_hundred::run(n)
+    } else if n < 200 {
+        two_hundred::run(n % 100);
     }
 }
 
 pub fn run_all() {
     one_hundred::run_all();
+    two_hundred::run_all();
 }

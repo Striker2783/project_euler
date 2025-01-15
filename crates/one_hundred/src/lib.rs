@@ -1,4 +1,6 @@
 #![feature(test)]
+
+use common::hundreds;
 extern crate test;
 
 pub mod eighties;
@@ -12,7 +14,7 @@ pub mod tens;
 pub mod thirties;
 pub mod twenties;
 
-const SOLVERS: &[fn(Option<usize>)] = &[
+hundreds!(&[
     ones::run,
     tens::run,
     twenties::run,
@@ -22,17 +24,5 @@ const SOLVERS: &[fn(Option<usize>)] = &[
     sixties::run,
     seventies::run,
     eighties::run,
-    nineties::run,
-];
-
-pub fn run(n: usize) {
-    if (n / 10) as usize > SOLVERS.len() {
-        return;
-    }
-    SOLVERS[(n / 10) as usize](Some(n % 10));
-}
-pub fn run_all() {
-    for s in SOLVERS {
-        s(None);
-    }
-}
+    nineties::run
+]);

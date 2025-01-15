@@ -16,3 +16,21 @@ macro_rules! tens {
         }
     };
 }
+
+#[macro_export]
+macro_rules! hundreds {
+    ($f: expr) => {
+        const F: &[fn(Option<usize>)] = $f;
+        pub fn run(n: usize) {
+            if n / 10 > F.len() {
+                return;
+            }
+            F[n / 10](Some(n % 10));
+        }
+        pub fn run_all() {
+            for s in F {
+                s(None);
+            }
+        }
+    };
+}
