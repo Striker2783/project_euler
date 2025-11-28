@@ -1,7 +1,7 @@
 use num::{BigUint, One, Zero};
 
 pub fn run() {
-    let mut result = Solver::new(1_000).solve();
+    let result = Solver::new(1_000).solve();
     println!("{result}");
 }
 

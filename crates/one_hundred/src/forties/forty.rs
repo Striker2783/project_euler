@@ -5,7 +5,7 @@ pub fn run() {
         "{}",
         (0..=6)
             .map(|i| get_digit(10u32.pow(i)))
-            .fold(1, |acc, i| acc * i)
+            .product::<u32>()
     );
 }
 fn get_digit(n: u32) -> u32 {

@@ -10,7 +10,7 @@ fn solve(curr: u32) -> u32 {
         dp[i][0] = 1;
         for n in 1..=(curr as usize) {
             dp[i][n] = dp[i][n - 1];
-            if i >= n + 1 {
+            if i > n {
                 dp[i][n] += dp[i - n - 1][n];
             }
         }

@@ -2,7 +2,7 @@ use std::{
     cmp::PartialEq,
     convert::From,
     mem::swap,
-    ops::{self, Add, AddAssign, Deref, DivAssign, Mul, MulAssign, Rem, RemAssign},
+    ops::{Add, AddAssign, DivAssign, Mul, MulAssign, RemAssign},
 };
 
 use num::BigUint;
@@ -11,13 +11,13 @@ pub fn run() {
     println!("{}", solve(100));
 }
 fn solve(n: usize) -> u32 {
-    let mut iter: Vec<_> = ECF::default().take(n).map(|a| BigUint::from(a)).collect();
+    let iter: Vec<_> = ECF::default().take(n).map(BigUint::from).collect();
     let mut a = continued_fraction(iter.into_iter().rev()).unwrap().0;
     let mut sum = 0;
     while a > BigUint::ZERO {
         let b = (a.clone() % BigUint::from(10u32)).to_u64_digits();
         sum += match b.last() {
-            Some(a) => a.clone(),
+            Some(a) => *a,
             None => 0,
         };
         a /= BigUint::from(10u32);

@@ -1,4 +1,4 @@
-use std::{collections::HashSet, ops::Range};
+use std::ops::Range;
 
 use common::get_digits;
 

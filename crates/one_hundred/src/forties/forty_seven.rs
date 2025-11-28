@@ -34,7 +34,7 @@ impl Solver {
                 last.clear();
             }
         }
-        last.first().unwrap().clone()
+        *last.first().unwrap()
     }
 
     fn get_distinct_primes(&mut self, mut n: u32) -> usize {
@@ -57,7 +57,7 @@ impl Solver {
         if n > 1 {
             set.insert(n);
         }
-        set.iter().count()
+        set.len()
     }
 }
 

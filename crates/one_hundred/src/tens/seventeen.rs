@@ -23,19 +23,19 @@ const TENS: [&str; 8] = [
 ];
 fn get_number_word(mut n: u32) -> String {
     let mut str = String::new();
-    if (n / 1000 > 0) {
+    if n / 1000 > 0 {
         str += &get_number_word(n / 1000);
         str += " thousand";
         n %= 1000;
-        if (n > 0) {
+        if n > 0 {
             str += " ";
         }
     }
-    if (n / 100 > 0) {
+    if n / 100 > 0 {
         str += &get_number_word(n / 100);
         str += " hundred";
         n %= 100;
-        if (n > 0) {
+        if n > 0 {
             str += " and ";
         }
     }

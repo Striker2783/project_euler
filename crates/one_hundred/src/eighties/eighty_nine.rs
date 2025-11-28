@@ -22,14 +22,14 @@ fn count_chars(mut n: u32) -> u32 {
     for i in 0..(n/1000) {
         str.push('M');
     }
-    n = n % 1000;
+    n %= 1000;
     if n / 900 == 1 {
         count += 2;
         str.push_str("CM");
         n %= 900;
     } else if n >= 500 {
         count += 1;
-        str.push_str("D");
+        str.push('D');
         n %= 500;
     } else if n >= 400 {
         count += 2;

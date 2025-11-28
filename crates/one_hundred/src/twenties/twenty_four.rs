@@ -1,4 +1,3 @@
-use std::mem::swap;
 
 struct Permutations {
     n: Vec<u32>,
@@ -28,8 +27,8 @@ impl Permutations {
     }
     pub fn next(&mut self) {
         let mut first_swap = self.n.len() - 1;
-        while (first_swap > 0) {
-            if (self.n[first_swap - 1] < self.n[first_swap]) {
+        while first_swap > 0 {
+            if self.n[first_swap - 1] < self.n[first_swap] {
                 break;
             }
             first_swap -= 1;
@@ -39,7 +38,7 @@ impl Permutations {
             return;
         }
         first_swap -= 1;
-        let mut second_swap = Self::get_ceil(&self.n[first_swap..]) + first_swap;
+        let second_swap = Self::get_ceil(&self.n[first_swap..]) + first_swap;
         self.n.swap(first_swap, second_swap);
         self.n[(first_swap + 1)..].sort();
     }

@@ -1,5 +1,5 @@
 pub fn run() {
-    let mut solver = Solver::new(1000, 10);
+    let solver = Solver::new(1000, 10);
     println!("{}", solver.solve());
 }
 
@@ -17,7 +17,7 @@ impl Solver {
             .map(|n| self.number(n))
             .fold(0, |acc, n| (acc + n) % 10u64.pow(self.digits))
     }
-    fn number(&self, mut n: u64) -> u64 {
+    fn number(&self, n: u64) -> u64 {
         let mut prod = 1;
         for _ in 0..n {
             prod *= n;

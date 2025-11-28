@@ -1,7 +1,7 @@
 use std::{
     collections::HashSet,
     fs::File,
-    io::{BufRead, BufReader, Read},
+    io::{BufReader, Read},
 };
 
 struct WordIterator {
@@ -43,7 +43,7 @@ pub fn run() {
     let file = match File::open("Files/forty_two.txt") {
         Ok(f) => f,
         Err(e) => {
-            eprintln!("{}", e);
+            eprintln!("{e}");
             return;
         }
     };

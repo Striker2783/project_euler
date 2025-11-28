@@ -1,4 +1,3 @@
-use std::{collections::HashSet, ops::Add};
 
 use num::integer::Roots;
 
@@ -12,7 +11,7 @@ fn is_pentagonal(n: u32) -> bool {
         .checked_mul(n)
         .and_then(|m| {
             let x = (m + 1).sqrt() + 1;
-            let x = (x / 6);
+            let x = x / 6;
             if x * (3 * x - 1) / 2 == n {
                 Some(())
             } else {

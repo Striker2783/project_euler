@@ -1,4 +1,4 @@
-use std::{collections::HashMap, mem::swap};
+use std::mem::swap;
 
 pub fn run() {
     println!("{}", solve(Fraction(3, 7), 1_000_000).0);

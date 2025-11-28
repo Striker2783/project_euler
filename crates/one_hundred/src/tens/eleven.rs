@@ -1,4 +1,4 @@
-use std::{collections::VecDeque, error::Error, fs, ops::Deref, path::Path, vec};
+use std::{collections::VecDeque, error::Error, fs, vec};
 
 pub fn run() {
     let contents = fs::read_to_string("Files/eleven.txt").unwrap();
@@ -103,10 +103,7 @@ impl Main {
                 .lines()
                 .map(|line| {
                     line.split(' ')
-                        .filter_map(|num| match num.parse::<u8>() {
-                            Ok(n) => Some(n),
-                            Err(_) => None,
-                        })
+                        .filter_map(|num| num.parse::<u8>().ok())
                         .collect()
                 })
                 .collect(),

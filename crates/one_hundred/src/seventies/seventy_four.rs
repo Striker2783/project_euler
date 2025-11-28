@@ -14,7 +14,7 @@ fn get_chain_length(mut n: u32) -> u32 {
         set.insert(n);
         n = sum_factorial_digits(n);
     }
-    set.iter().count() as u32
+    set.len() as u32
 }
 
 fn sum_factorial_digits(mut n: u32) -> u32 {

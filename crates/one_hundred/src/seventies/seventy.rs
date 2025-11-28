@@ -1,5 +1,5 @@
 use core::f32;
-use std::{collections::HashMap, mem::swap};
+use std::mem::swap;
 
 pub fn run() {
     println!("{}", solve(10_000_000));
@@ -59,7 +59,7 @@ fn is_permutation(mut a: u32, mut b: u32) -> bool {
 fn gcd(mut a: u32, mut b: u32) -> u32 {
     while b > 0 {
         swap(&mut a, &mut b);
-        b = b % a;
+        b %= a;
     }
     a
 }

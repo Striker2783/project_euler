@@ -1,7 +1,7 @@
 use num::pow::Pow;
 
 pub fn run() {
-    let mut solver = MagicGonRing::new(5, 16);
+    let solver = MagicGonRing::new(5, 16);
     println!("{}", solver.solve());
 }
 

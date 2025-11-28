@@ -156,7 +156,7 @@ impl Date {
     }
     fn counting_sundays(&mut self, end_date: &Self) -> u32 {
         let mut count = 0;
-        while (self != end_date) {
+        while self != end_date {
             self.next_day();
             if self.day == 1 && self.day_of_week == DayOfWeek::Sunday {
                 count += 1;

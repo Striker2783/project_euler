@@ -1,4 +1,3 @@
-use std::collections::HashMap;
 
 pub fn run() {
     println!("{}", solve_2(1_000_000))

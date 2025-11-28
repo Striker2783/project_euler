@@ -1,5 +1,5 @@
 pub fn nine() {
-    let mut triplets = pythagoreon_triples(&500);
+    let triplets = pythagoreon_triples(&500);
     let max = triplets.filter(|x| x.0 + x.1 + x.2 == 1000).last();
     if let Some(a) = max {
         println!("{}", a.0 * a.1 * a.2);

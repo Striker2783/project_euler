@@ -10,7 +10,7 @@ fn solve(max: u64) -> u64 {
 fn is_curious(n: u64) -> bool {
     let mut x = n;
     let mut sum = 0;
-    while (x > 0) {
+    while x > 0 {
         sum += factorial(x % 10);
         x /= 10;
     }

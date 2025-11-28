@@ -7,9 +7,9 @@ pub fn run() {
 }
 // Solution: Number with most primes as factors due to every number being a prime or a product of primes
 fn solve(max: u32) -> u32 {
-    let mut primes = Primes::<u32>::default();
+    let primes = Primes::<u32>::default();
     let mut product = 1;
-    while let Some(p) = primes.next() {
+    for p in primes {
         if product * p > max {
             return product;
         }

@@ -1,4 +1,4 @@
-use std::{collections::HashMap, result};
+use std::collections::HashMap;
 
 use num::pow::Pow;
 
@@ -62,7 +62,7 @@ impl Solver {
                 break;
             }
             let sort_digits = Self::sort_digits(p);
-            self.map.entry(sort_digits).or_insert_with(Vec::new).push(p);
+            self.map.entry(sort_digits).or_default().push(p);
         }
     }
     fn sort_digits(mut n: u32) -> u32 {

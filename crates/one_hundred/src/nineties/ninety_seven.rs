@@ -1,4 +1,3 @@
-use num::traits::WrappingMul;
 
 pub fn run() {
     println!("{}", solve());

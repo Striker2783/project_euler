@@ -23,7 +23,7 @@ impl BigFib {
     pub fn digits(n: u32) -> u32 {
         let mut f = Self::new();
         let mut i = 1;
-        while (f.get().to_str_radix(10).len() < n as usize) {
+        while f.get().to_str_radix(10).len() < n as usize {
             f.next();
             i += 1;
         }

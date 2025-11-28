@@ -58,13 +58,13 @@ fn is_square(n: u64) -> Option<u64> {
         if square == n {
             return Some(mid);
         }
-        if (square < n) {
+        if square < n {
             left = mid + 1;
         } else {
             right = mid - 1;
         }
     }
-    return None;
+    None
 }
 
 fn is_almost(a: u32, b: u32) -> bool {

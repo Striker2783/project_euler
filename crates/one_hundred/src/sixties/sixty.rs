@@ -1,4 +1,4 @@
-use std::collections::{HashMap, HashSet};
+use std::collections::HashSet;
 
 use common::number_series::Primes;
 
@@ -22,7 +22,7 @@ impl Solver {
         }
     }
     fn solve(mut self) -> u64 {
-        let mut primes: Primes<u64> = Primes::default();
+        let primes: Primes<u64> = Primes::default();
         for p in primes {
             if p > self.max {
                 break;
@@ -38,7 +38,7 @@ impl Solver {
             .unwrap()
     }
     fn prev_iter(&mut self, n: u64) {
-        let mut primes: Primes<u64> = Primes::default();
+        let primes: Primes<u64> = Primes::default();
         for x in primes {
             if x >= n {
                 break;
@@ -64,7 +64,7 @@ impl Solver {
     }
 }
 
-fn concat(mut a: u64, mut b: u64) -> u64 {
+fn concat(a: u64, b: u64) -> u64 {
     let mut len = 0;
     let mut b_c = b;
     while b_c > 0 {

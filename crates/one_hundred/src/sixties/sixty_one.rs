@@ -7,7 +7,7 @@ use common::{
 use num::pow::Pow;
 
 pub fn run() {
-    let mut solver = Solver::new(4, 6);
+    let solver = Solver::new(4, 6);
     println!("{}", solver.solve());
 }
 
@@ -118,7 +118,7 @@ impl RecursionAlgorithm {
             return;
         }
         let v = d.map.get(
-            &(self.nums.last().unwrap().clone() % 100)
+            &(*self.nums.last().unwrap() % 100)
                 .try_into()
                 .unwrap(),
         );
@@ -139,7 +139,7 @@ impl RecursionAlgorithm {
             self.set.insert(s);
             self.nums.push(n);
 
-            unsafe { self.recurse(&d) };
+            unsafe { self.recurse(d) };
             self.set.remove(&s);
             self.nums.pop();
         }

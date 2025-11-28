@@ -13,7 +13,7 @@ impl Solver {
         Self { max, n }
     }
 
-    fn solve(mut self) -> u32 {
+    fn solve(self) -> u32 {
         (1..=self.n)
             .map(|v| {
                 (0..=v)

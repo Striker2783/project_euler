@@ -16,7 +16,7 @@ pub fn run() {
 fn sum_digits(mut n: BigUint) -> u32 {
     let mut sum = 0;
     while !n.is_zero() {
-        sum += (&n % 10 as u32).to_u32().unwrap();
+        sum += (&n % 10_u32).to_u32().unwrap();
         n /= 10u32;
     }
     sum

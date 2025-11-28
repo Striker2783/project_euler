@@ -6,7 +6,7 @@ use crate::tens::ten::{sieve_of_eratosthenes, sieve_of_eratosthenes_set};
 
 pub fn run() {
     let primes = sieve_of_eratosthenes_set(1_000_000);
-    println!("{}", solve((-999..1000), (-999..1000)));
+    println!("{}", solve(-999..1000, -999..1000));
 }
 fn solve(a_range: Range<i32>, b_range: Range<i32>) -> i32 {
     let primes = sieve_of_eratosthenes(1_000_000);

@@ -30,7 +30,7 @@ fn rectangles_1(n: u64, m: u64) -> u64 {
     let mut sum = 0;
     for i in 0..n {
         for j in 0..m {
-            sum += ((n - i) * (m - j));
+            sum += (n - i) * (m - j);
         }
     }
     sum

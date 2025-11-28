@@ -22,7 +22,7 @@ fn solve(rolls: u32) -> String {
     for i in 0usize..3 {
         str.push_str(format!("{:02}", v[i].0).as_str());
     }
-    return str;
+    str
 }
 fn get_shuffled_decks(arr: &[u32], size: usize) -> Vec<u32> {
     let mut rng = rand::thread_rng();
@@ -100,7 +100,7 @@ fn monte_carlo(rolls: u32) -> String {
         simulate_once(rolls, &mut visited);
     }
     let mut v: Vec<_> = visited.iter().enumerate().collect();
-    v.sort_unstable_by(|a, b| b.1.cmp(&a.1));
+    v.sort_unstable_by(|a, b| b.1.cmp(a.1));
     v.iter().take(3).map(|n| format!("{:02}", n.0)).collect()
 }
 fn simulate(rolls: u32) -> HashMap<(u32, i32), f64> {
@@ -108,7 +108,7 @@ fn simulate(rolls: u32) -> HashMap<(u32, i32), f64> {
     map.insert((0, 0), 1f64);
     for _ in 0..1_000 {
         let mut new_map = HashMap::new();
-        for ((mut place, mut doubles), chance) in map {
+        for ((place, doubles), chance) in map {
             for r1 in 1..=rolls {
                 for r2 in 1..=rolls {
                     let place = (place + r1 + r2) % 40;
@@ -124,7 +124,7 @@ fn simulate(rolls: u32) -> HashMap<(u32, i32), f64> {
                     match place {
                         7 | 22 | 36 => {
                             for c in C {
-                                let mut place = match c {
+                                let place = match c {
                                     40 => match place {
                                         7 => 15,
                                         22 => 25,

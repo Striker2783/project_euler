@@ -1,4 +1,3 @@
-use std::collections::HashMap;
 
 struct Collatz {
     n: u64,
@@ -55,14 +54,13 @@ impl<'a> Solver {
         let mut stack = vec![];
         let mut collatz = Collatz::new(n);
         let mut chain = 1;
-        while (!collatz.is_loop()) {
+        while !collatz.is_loop() {
             let curr = collatz.next().unwrap();
-            if (curr as usize) < self.fast.len() {
-                if self.fast[curr as usize] != 0 {
+            if (curr as usize) < self.fast.len()
+                && self.fast[curr as usize] != 0 {
                     chain = self.fast[curr as usize];
                     break;
                 }
-            }
             stack.push(curr);
         }
         for v in stack {

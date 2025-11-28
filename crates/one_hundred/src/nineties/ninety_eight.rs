@@ -19,13 +19,13 @@ fn is_square(n: u64) -> bool {
         if square == n {
             return true;
         }
-        if (square < n) {
+        if square < n {
             left = mid + 1;
         } else {
             right = mid - 1;
         }
     }
-    return false;
+    false
 }
 const FILE: &str = "Files/98.txt";
 fn solve(s: &str) -> u64 {
@@ -162,16 +162,12 @@ impl Words {
         let mut inner = vec![0; 26];
         for v in &self.v {
             for i in 0..v.len() {
-                for i in 0..outer.len() {
-                    outer[i] = 0
-                }
+                outer.fill(0);
                 for b in v[i].bytes() {
                     outer[(b - b'A') as usize] += 1;
                 }
                 for j in (i + 1)..v.len() {
-                    for i in 0..inner.len() {
-                        inner[i] = 0;
-                    }
+                    inner.fill(0);
                     for b in v[j].bytes() {
                         inner[(b - b'A') as usize] += 1;
                     }

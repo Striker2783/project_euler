@@ -100,7 +100,7 @@ impl Hand {
         }
         let counts = self.get_value_count();
         if !counts.is_empty() && counts[0].1 == 4 {
-            return Rank::Four(counts[0].0);
+            Rank::Four(counts[0].0)
         } else if counts.len() >= 2 && counts[0].1 == 3 && counts[1].1 == 2 {
             return Rank::Full(counts[0].0, counts[1].0);
         } else if is_flush {

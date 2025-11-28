@@ -1,4 +1,4 @@
-use num::{BigRational, BigUint};
+use num::BigUint;
 
 pub fn run() {
     println!("{}", solve(100));
@@ -23,7 +23,7 @@ fn sqrt(n: u32) -> u32 {
     let mut sqrt = (n * BigUint::from(10u32).pow(198)).sqrt();
     let mut sum = 0;
     for _ in 0..100 {
-        sum += match (sqrt.clone() % 10u32).to_u32_digits().get(0) {
+        sum += match (sqrt.clone() % 10u32).to_u32_digits().first() {
             Some(n) => *n,
             None => 0,
         };

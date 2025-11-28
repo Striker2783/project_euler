@@ -1,9 +1,8 @@
-use std::collections::VecDeque;
 
 use common::number_series::Primes;
 
 pub fn run() {
-    let mut solver = Solver::new(8);
+    let solver = Solver::new(8);
     println!("{}", solver.solve());
 }
 #[derive(Default)]
@@ -33,7 +32,7 @@ impl Solver {
         unreachable!()
     }
     fn prime_family(&mut self, p: &[u8]) -> Vec<u32> {
-        if p.iter().find(|x| **x == 10).is_none() {
+        if !p.contains(&10) {
             return vec![];
         }
         let mut family = vec![];
@@ -55,17 +54,11 @@ impl Solver {
         family
     }
 }
+#[derive(Default)]
 struct Generator {
     curr: Vec<u8>,
 }
 
-impl Default for Generator {
-    fn default() -> Self {
-        Self {
-            curr: Default::default(),
-        }
-    }
-}
 impl Iterator for Generator {
     type Item = Vec<u8>;
 

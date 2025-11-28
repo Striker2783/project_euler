@@ -3,7 +3,6 @@ use std::{
     u32,
 };
 
-use common::is_prime;
 
 pub fn run() {
     println!("{}", solve(12_000));

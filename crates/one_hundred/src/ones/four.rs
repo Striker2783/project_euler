@@ -7,7 +7,7 @@ pub fn four() {
         .filter(is_palindromic)
         .max();
     if let Some(a) = largest {
-        println!("{}", a);
+        println!("{a}");
     }
 }
 

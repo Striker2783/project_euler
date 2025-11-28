@@ -1,19 +1,16 @@
 use std::collections::HashSet;
 
-use common::{
-    number_series::Primes,
-    sieve::{self, Sieve},
-};
+use common::number_series::Primes;
 
 pub fn run() {
     println!("{}", solve(50_000_000));
 }
 /// Brute Force
 fn solve(n: u32) -> u32 {
-    let mut primes: Vec<_> = Primes::<u32>::default()
+    let primes: Vec<_> = Primes::<u32>::default()
         .take_while(|x| *x * *x <= n)
         .collect();
-    let mut count = 0;
+    let count = 0;
     let mut set = HashSet::new();
     for &p1 in &primes {
         if p1.pow(4) >= n {

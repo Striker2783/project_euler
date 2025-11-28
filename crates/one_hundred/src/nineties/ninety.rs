@@ -32,7 +32,7 @@ fn every<T>(mut f: T)
 where
     T: FnMut(&Dice),
 {
-    fn recurse<T>(mut f: &mut T, dice: &mut Dice, start: u32)
+    fn recurse<T>(f: &mut T, dice: &mut Dice, start: u32)
     where
         T: FnMut(&Dice),
     {
@@ -43,9 +43,9 @@ where
             return;
         }
         for n in start..10 {
-            dice.insert(n as u32);
+            dice.insert(n);
             recurse(f, dice, n + 1);
-            dice.remove(&(n as u32));
+            dice.remove(&{ n });
         }
     }
     let mut set = HashSet::new();

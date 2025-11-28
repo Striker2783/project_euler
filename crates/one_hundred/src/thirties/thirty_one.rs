@@ -1,4 +1,3 @@
-use std::collections::HashMap;
 
 pub fn run() {
     let solution = solve(200);

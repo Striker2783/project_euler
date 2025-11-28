@@ -7,7 +7,7 @@ pub fn run() {
 fn solve(max: u32) -> u32 {
     let mut max_l = 0;
     let mut min_l = 0;
-    for mut n in 1..=max {
+    for n in 1..=max {
         let (a, b) = match get_amicable(n, max) {
             Some(a) => a,
             None => continue,

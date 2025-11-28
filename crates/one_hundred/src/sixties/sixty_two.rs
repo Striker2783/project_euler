@@ -3,7 +3,7 @@ use std::collections::HashMap;
 use common::number_series::Cubes;
 
 pub fn run() {
-    let mut solver = Solver::new(5);
+    let solver = Solver::new(5);
     println!("{}", solver.solve());
 }
 

@@ -1,10 +1,10 @@
-use std::collections::{HashMap, HashSet};
+use std::collections::HashMap;
 
 use common::number_series::Squares;
 
 const MAX: u32 = 1000;
 pub fn run() {
-    let mut solver = Solver::new(MAX);
+    let solver = Solver::new(MAX);
     println!("{}", solver.solve());
 }
 

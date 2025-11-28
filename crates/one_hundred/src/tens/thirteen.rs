@@ -1,4 +1,4 @@
-use std::{error::Error, fs};
+use std::fs;
 
 pub fn run() {
     let contents = fs::read_to_string("Files/thirteen.txt").unwrap();

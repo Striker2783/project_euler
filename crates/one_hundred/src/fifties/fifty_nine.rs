@@ -1,8 +1,7 @@
 use std::{
-    fs::{self, File},
+    fs::{self},
     num::ParseIntError,
     path::Path,
-    str::FromStr,
 };
 
 pub fn run() {
@@ -22,8 +21,8 @@ fn to_bytes(v: String) -> Result<Vec<u8>, ParseIntError> {
     v.split(',').map(|s| s.parse::<u8>()).collect()
 }
 fn solve<T: AsRef<Path>>(f: T) -> Result<u32, SolveError> {
-    let input = fs::read_to_string(f).map_err(|e| SolveError::FileIO(e))?;
-    let input = to_bytes(input).map_err(|e| SolveError::Parse(e))?;
+    let input = fs::read_to_string(f).map_err(SolveError::FileIO)?;
+    let input = to_bytes(input).map_err(SolveError::Parse)?;
     'outer: for k in KeyGenerate::new(3) {
         let mut cycle = k.iter().cycle().cloned();
         let mut output = String::new();

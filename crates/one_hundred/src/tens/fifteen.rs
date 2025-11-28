@@ -1,17 +1,16 @@
-use std::mem::swap;
 
 pub fn run() {
     let x = lattice_path(20, 20);
     println!("{x}");
 }
 
-fn lattice_path(mut n: u64, mut m: u64) -> u64 {
+fn lattice_path(n: u64, m: u64) -> u64 {
     let mut sum = n + m;
     let mut max = n.max(m);
     let mut other = sum - max;
     let mut n = 1;
     let mut r = 1;
-    while (sum > 1 && max > 1) {
+    while sum > 1 && max > 1 {
         if n > r {
             r *= other * max;
             other -= 1;
@@ -21,7 +20,7 @@ fn lattice_path(mut n: u64, mut m: u64) -> u64 {
             sum -= 1;
         }
         let mut i = 2;
-        while (i * i <= n.max(r)) {
+        while i * i <= n.max(r) {
             if n % i == 0 && r % i == 0 {
                 n /= i;
                 r /= i;

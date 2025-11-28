@@ -14,7 +14,7 @@ fn solve(range: Range<u64>) -> u64 {
 fn is_palindromic(n: u64, base: u64) -> bool {
     let mut x = n;
     let mut reverse = 0;
-    while (x > 0) {
+    while x > 0 {
         reverse = (reverse * base) + (x % base);
         x /= base;
     }

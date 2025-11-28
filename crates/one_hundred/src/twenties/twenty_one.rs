@@ -17,7 +17,7 @@ fn get_sum_divsiors(n: u32) -> u32 {
 
 fn get_sum_of_amicable(n: u32) -> u32 {
     let mut sum = 0;
-    for i in (1..n) {
+    for i in 1..n {
         let divs = get_sum_divsiors(i);
         if divs == i {
             continue;

@@ -1,4 +1,4 @@
-use common::{is_prime, number_series::Primes};
+use common::number_series::Primes;
 
 pub fn run() {
     println!("{}", solve(1_000_000));

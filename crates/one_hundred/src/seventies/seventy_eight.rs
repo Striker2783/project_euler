@@ -14,11 +14,11 @@ fn dp(d: u64) -> u32 {
             let row = &dp[o as usize];
             val += match row.get((m - 1) as usize) {
                 Some(a) => *a,
-                None => row.last().unwrap().clone(),
+                None => *row.last().unwrap(),
             };
             vec.push(val % d);
         }
-        if vec.last().unwrap().clone() % d == 0 {
+        if *vec.last().unwrap() % d == 0 {
             return n;
         }
         dp.push(vec);
