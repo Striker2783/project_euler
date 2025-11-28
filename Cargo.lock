@@ -204,7 +204,6 @@ name = "two_hundred"
 version = "0.1.0"
 dependencies = [
  "common",
- "num",
 ]
 
 [[package]]

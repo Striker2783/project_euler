@@ -1,19 +1,16 @@
-use num::BigUint;
-
 pub fn run() {
     println!("{}", solve());
 }
 
 fn solve() -> u32 {
-    for (i, n) in BigFibonacci::new().enumerate() {
-        if !is_pandigital((n.clone() % 10u64.pow(10)).to_u64_digits()[0]) {
+    for (i, mut n) in AnotherFibonacci::new().enumerate() {
+        if !is_pandigital(n.1 % 10u64.pow(9)) {
             continue;
         }
-        let str = n.to_string();
-        if str.len() < 10 {
-            continue;
+        while n.0 >= 10u64.pow(9) {
+            n.0 /= 10;
         }
-        if !is_pandigital(str[0..9].parse().unwrap()) {
+        if !is_pandigital(n.0) {
             continue;
         }
         return i as u32 + 1;
@@ -33,44 +30,60 @@ fn is_pandigital(mut n: u64) -> bool {
     set.iter().all(|b| *b)
 }
 
-struct BigFibonacci {
-    prev: BigUint,
-    curr: BigUint,
+struct AnotherFibonacci {
+    prev_low: u64,
+    prev_high: u64,
+    curr_low: u64,
+    curr_high: u64,
 }
 
-impl BigFibonacci {
+impl AnotherFibonacci {
     fn new() -> Self {
         Self {
-            prev: BigUint::ZERO,
-            curr: BigUint::from(1u32),
+            prev_low: 0,
+            prev_high: 0,
+            curr_low: 1,
+            curr_high: 1,
         }
     }
 }
-impl Iterator for BigFibonacci {
-    type Item = BigUint;
+impl Iterator for AnotherFibonacci {
+    type Item = (u64, u64);
 
     fn next(&mut self) -> Option<Self::Item> {
-        let added = self.prev.clone() + self.curr.clone();
-        let curr = self.curr.clone();
-        self.prev = self.curr.clone();
-        self.curr = added;
-        Some(curr)
+        let (curr_low, curr_high) = (self.curr_low, self.curr_high);
+
+        let new_low = self.prev_low + self.curr_low % 10u64.pow(12);
+        self.prev_low = self.curr_low;
+        self.curr_low = new_low;
+
+        let new_high = self.prev_high.checked_add(self.curr_high);
+        if let Some(new_high) = new_high {
+            self.prev_high = self.curr_high;
+            self.curr_high = new_high;
+        } else {
+            let new_high = self.prev_high / 10 + self.curr_high / 10;
+            self.prev_high = self.curr_high / 10;
+            self.curr_high = new_high;
+        }
+        Some((curr_high, curr_low))
     }
 }
 
 #[cfg(test)]
 mod tests {
-    use num::{BigUint, FromPrimitive};
-
-    use crate::tens::four::{BigFibonacci, is_pandigital};
+    use crate::tens::four::{AnotherFibonacci, is_pandigital};
 
     #[test]
     fn test_fibonacci() {
-        let mut fib = BigFibonacci::new();
-        assert_eq!(fib.next(), BigUint::from_u32(1));
-        assert_eq!(fib.next(), BigUint::from_u32(1));
-        assert_eq!(fib.next(), BigUint::from_u32(2));
-        assert_eq!(fib.next(), BigUint::from_u32(3));
+        assert_eq!(AnotherFibonacci::new().next().unwrap(), (1, 1));
+        assert_eq!(AnotherFibonacci::new().nth(1).unwrap(), (1, 1));
+        assert_eq!(AnotherFibonacci::new().nth(2).unwrap(), (2, 2));
+
+        assert!(is_pandigital(
+            AnotherFibonacci::new().nth(540).unwrap().1 % 10u64.pow(9)
+        ));
+        assert!(is_pandigital(AnotherFibonacci::new().nth(2748).unwrap().0));
     }
     #[test]
     fn test_is_pandigital() {
