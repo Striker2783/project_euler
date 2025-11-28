@@ -3,7 +3,8 @@ mod one;
 mod two;
 mod three;
 mod four;
+mod five;
 
 use common::tens;
 
-tens!(&[zero::run, one::run, two::run, three::run, four::run]);
+tens!(&[zero::run, one::run, two::run, three::run, four::run, five::run]);

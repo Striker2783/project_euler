@@ -98,7 +98,7 @@ fn condition1(v: &[u32]) -> bool {
     true
 }
 
-fn is_special_sum_set(v: &[u32]) -> bool {
+pub fn is_special_sum_set(v: &[u32]) -> bool {
     // condition2(v) && condition1(v)
     condition1(v)
 }
