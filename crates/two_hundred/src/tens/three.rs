@@ -9,12 +9,10 @@ fn find(n: usize) -> Vec<u32> {
     let mut min = u32::MAX;
     let mut res = Vec::new();
     vary(&a, 4, |v| {
-        if is_special_sum_set(v) {
-            let sum: u32 = v.iter().sum();
-            if sum < min {
-                min = sum;
-                res = v.to_vec();
-            }
+        let sum: u32 = v.iter().sum();
+        if sum < min && is_special_sum_set(v) {
+            min = sum;
+            res = v.to_vec();
         }
     });
     res
