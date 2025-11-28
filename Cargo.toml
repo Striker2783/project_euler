@@ -14,5 +14,3 @@ debug = true
 
 [workspace]
 members = ["crates/common", "crates/one_hundred", "crates/two_hundred"]
-[workspace.dependencies]
-common = { path = "crates/common" }
