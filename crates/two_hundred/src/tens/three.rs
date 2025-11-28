@@ -78,17 +78,17 @@ fn get_sum(v: &[u32], mut idx: u32) -> u32 {
 }
 
 fn condition1(v: &[u32]) -> bool {
-    for subset1 in 1..(1 << v.len()) {
+    for subset1 in 1u32..(1 << v.len()) {
         for subset2 in (subset1 + 1)..(1 << v.len()) {
             if subset1 == subset2 || subset1 & subset2 != 0 {
                 continue;
             }
+            let (ones1, ones2) = (subset1.count_ones(), subset2.count_ones());
+            if ones1 != ones2 {
+                continue;
+            }
             let (sum1, sum2) = (get_sum(v, subset1), get_sum(v, subset2));
             if sum1 == sum2 {
-                return false;
-            }
-            let (ones1, ones2) = (subset1.count_ones(), subset2.count_ones());
-            if (ones1 > ones2 && sum1 <= sum2) || (ones2 > ones1 && sum2 <= sum1) {
                 return false;
             }
         }
@@ -97,8 +97,7 @@ fn condition1(v: &[u32]) -> bool {
 }
 
 pub fn is_special_sum_set(v: &[u32]) -> bool {
-    // condition2(v) && condition1(v)
-    condition1(v)
+    condition1(v) && condition2(v)
 }
 
 fn generate_suboptimal(n: usize) -> Vec<u32> {
