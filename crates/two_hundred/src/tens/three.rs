@@ -120,7 +120,9 @@ fn generate_suboptimal(n: usize) -> Vec<u32> {
 
 #[cfg(test)]
 mod tests {
-    use crate::tens::three::{condition1, condition2, generate_suboptimal, is_special_sum_set};
+    use crate::tens::three::{
+        condition1, condition2, find, generate_suboptimal, is_special_sum_set,
+    };
 
     #[test]
     fn test_generate_suboptimal() {
@@ -148,5 +150,9 @@ mod tests {
     #[test]
     fn test_condition1() {
         assert!(condition1(&[11, 17, 20, 22, 23, 24]));
+    }
+    #[test]
+    fn test_find() {
+        assert_eq!(find(6), [11, 18, 19, 20, 22, 25]);
     }
 }
