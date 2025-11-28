@@ -72,7 +72,7 @@ impl Iterator for AnotherFibonacci {
 
 #[cfg(test)]
 mod tests {
-    use crate::tens::four::{AnotherFibonacci, is_pandigital};
+    use crate::ones::four::{AnotherFibonacci, is_pandigital};
 
     #[test]
     fn test_fibonacci() {

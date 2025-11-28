@@ -39,7 +39,7 @@ pub fn distinct(mut n: u64) -> u64 {
 
 #[cfg(test)]
 mod tests {
-    use crate::tens::eight::distinct;
+    use crate::ones::eight::distinct;
 
     #[test]
     fn test_distinct() {

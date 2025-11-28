@@ -51,7 +51,7 @@ impl From<&str> for Triangle {
 }
 #[cfg(test)]
 mod tests {
-    use crate::tens::two::Triangle;
+    use crate::ones::two::Triangle;
 
     #[test]
     fn test_contains_origin() {

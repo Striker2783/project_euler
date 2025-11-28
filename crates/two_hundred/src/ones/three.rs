@@ -117,7 +117,7 @@ fn generate_suboptimal(n: usize) -> Vec<u32> {
 
 #[cfg(test)]
 mod tests {
-    use crate::tens::three::{
+    use crate::ones::three::{
         condition1, condition2, find, generate_suboptimal, is_special_sum_set,
     };
 

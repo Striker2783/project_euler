@@ -32,7 +32,7 @@ fn solve(score: u32) -> u32 {
 
 #[cfg(test)]
 mod tests {
-    use crate::tens::nine::solve;
+    use crate::ones::nine::solve;
 
     #[test]
     fn test_solve() {

@@ -61,7 +61,7 @@ fn combinations_bit(n: usize, r: usize, mut f: impl FnMut(u32)) {
 
 #[cfg(test)]
 mod tests {
-    use crate::tens::six::solve;
+    use crate::ones::six::solve;
 
     #[test]
     fn test_solve() {

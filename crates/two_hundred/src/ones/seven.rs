@@ -85,7 +85,7 @@ impl UnionFind {
 
 #[cfg(test)]
 mod tests {
-    use crate::tens::seven::{UnionFind, parse_str, solve};
+    use crate::ones::seven::{UnionFind, parse_str, solve};
 
     #[test]
     fn test_union_find() {

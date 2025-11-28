@@ -41,7 +41,7 @@ fn next_optimum(v: &[i64]) -> i64 {
 }
 #[cfg(test)]
 mod tests {
-    use crate::tens::one::{next_optimum, solve};
+    use crate::ones::one::{next_optimum, solve};
 
     #[test]
     fn test_next() {

@@ -1,6 +1,6 @@
 use std::fs;
 
-use crate::tens::three::is_special_sum_set;
+use crate::ones::three::is_special_sum_set;
 
 const FILE: &str = "Files/105.txt";
 

@@ -1,5 +1,5 @@
-pub mod tens;
+pub mod ones;
 
 use common::hundreds;
 
-hundreds!(&[tens::run]);
+hundreds!(&[ones::run]);
