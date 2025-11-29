@@ -1,5 +1,3 @@
-use std::collections::HashSet;
-
 pub fn run() {
     println!("{}", solve(4_000_000));
 }
@@ -14,34 +12,30 @@ fn calculate_distinct(v: &[u64]) -> u64 {
 }
 
 fn solve(min: u64) -> u64 {
-    let mut set = HashSet::new();
-    fn helper(
-        v: &mut Vec<u64>,
-        num: u64,
-        min: u64,
-        set: &mut HashSet<Vec<u64>>,
-        mut min_n: u64,
-    ) -> u64 {
+    fn helper(v: &mut Vec<u64>, num: u64, min: u64, prev: usize, mut min_n: u64) -> u64 {
         if num >= min_n {
             return min_n;
         } else if calculate_distinct(v) > min {
             return num;
-        } else if set.contains(v) {
-            return min_n;
         }
-        set.insert(v.clone());
         v.push(2);
-        min_n = min_n.min(helper(v, num * PRIMES[v.len() - 1], min, set, min_n));
+        min_n = min_n.min(helper(
+            v,
+            num * PRIMES[v.len() - 1],
+            min,
+            v.len() - 1,
+            min_n,
+        ));
         v.pop();
-        for i in 0..v.len() {
+        for i in prev..v.len() {
             v[i] += 2;
-            min_n = min_n.min(helper(v, num * PRIMES[i], min, set, min_n));
+            min_n = min_n.min(helper(v, num * PRIMES[i], min, i, min_n));
             v[i] -= 2;
         }
         min_n
     }
     let mut v = Vec::new();
-    helper(&mut v, 1, min, &mut set, u64::MAX)
+    helper(&mut v, 1, min, 0, u64::MAX)
 }
 
 #[cfg(test)]
