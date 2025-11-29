@@ -1,3 +1,4 @@
+mod eighteen;
 mod eleven;
 mod fifteen;
 mod fourteen;
@@ -17,5 +18,6 @@ tens!(&[
     fourteen::run,
     fifteen::run,
     sixteen::run,
-    seventeen::run
+    seventeen::run,
+    eighteen::run
 ]);
