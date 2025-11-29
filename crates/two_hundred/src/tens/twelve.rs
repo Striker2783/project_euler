@@ -5,6 +5,9 @@ pub fn run() {
 fn solve(percent: u64) -> u64 {
     let mut bouncies = 0;
     for n in 1.. {
+        if n == 10000 {
+            println!("{}", n - bouncies);
+        }
         if is_bouncy(n) {
             bouncies += 1;
             if bouncies * 100 == n * percent {
