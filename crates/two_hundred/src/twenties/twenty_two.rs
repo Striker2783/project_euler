@@ -6,6 +6,15 @@ fn solve(n: u32) -> u32 {
     (1..=n).map(mults).sum::<u32>()
 }
 
+fn log2_ceil(mut n: u32) -> u32 {
+    let mut count = 0;
+    while n > 0 {
+        n >>= 1;
+        count += 1;
+    }
+    count
+}
+
 fn mults_helper(target: u32, curr_v: &mut Vec<u32>, mut min_chain: usize) -> usize {
     assert!(!curr_v.is_empty());
     let curr = *curr_v.last().unwrap();
@@ -21,7 +30,8 @@ fn mults_helper(target: u32, curr_v: &mut Vec<u32>, mut min_chain: usize) -> usi
         curr_v.pop();
         min_chain = min_chain.min(res);
 
-        if curr_v.len() >= min_chain {
+        if curr_v.len() >= min_chain || min_chain - curr_v.len() < log2_ceil(target / curr) as usize
+        {
             break;
         }
     }
