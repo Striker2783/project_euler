@@ -1,6 +1,7 @@
 mod eleven;
 mod fifteen;
 mod fourteen;
+mod seventeen;
 mod sixteen;
 mod ten;
 mod thirteen;
@@ -15,5 +16,6 @@ tens!(&[
     thirteen::run,
     fourteen::run,
     fifteen::run,
-    sixteen::run
+    sixteen::run,
+    seventeen::run
 ]);
