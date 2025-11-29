@@ -1,4 +1,3 @@
-
 struct Permutations {
     n: Vec<u32>,
 }

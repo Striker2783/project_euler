@@ -23,7 +23,7 @@ fn factorial(n: u64) -> u64 {
 
 #[cfg(test)]
 mod tests {
-    use super::{is_curious, MAX};
+    use super::{MAX, is_curious};
 
     use super::solve;
 

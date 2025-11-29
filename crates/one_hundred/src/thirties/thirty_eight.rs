@@ -51,7 +51,7 @@ fn is_pandigital(nums: &[u32]) -> bool {
 
 #[cfg(test)]
 mod tests {
-    use super::{is_pandigital, solve, MAX};
+    use super::{MAX, is_pandigital, solve};
 
     #[test]
     fn t_is_pandigital() {

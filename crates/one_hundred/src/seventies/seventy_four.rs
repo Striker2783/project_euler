@@ -28,9 +28,7 @@ fn sum_factorial_digits(mut n: u32) -> u32 {
 
 #[cfg(test)]
 mod tests {
-    use crate::seventies::seventy_four::{
-        get_chain_length, sum_factorial_digits,
-    };
+    use crate::seventies::seventy_four::{get_chain_length, sum_factorial_digits};
 
     #[test]
     fn test_sum_factorial_digits() {
@@ -42,5 +40,4 @@ mod tests {
         assert_eq!(get_chain_length(145), 1);
         assert_eq!(get_chain_length(169), 3);
     }
-    
 }

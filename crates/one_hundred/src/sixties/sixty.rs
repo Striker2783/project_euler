@@ -82,7 +82,7 @@ fn concat(a: u64, b: u64) -> u64 {
 mod tests {
     use std::collections::HashSet;
 
-    use crate::sixties::sixty::{concat, Solver};
+    use crate::sixties::sixty::{Solver, concat};
 
     #[test]
     fn test_solve() {

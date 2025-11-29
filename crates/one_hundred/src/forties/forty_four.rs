@@ -1,4 +1,3 @@
-
 use num::integer::Roots;
 
 pub fn run() {

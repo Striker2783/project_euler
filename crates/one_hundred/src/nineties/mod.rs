@@ -1,13 +1,13 @@
 mod ninety;
+mod ninety_eight;
 mod ninety_five;
 mod ninety_four;
+mod ninety_nine;
 mod ninety_one;
 mod ninety_seven;
 mod ninety_six;
 mod ninety_three;
 mod ninety_two;
-mod ninety_eight;
-mod ninety_nine;
 
 use common::tens;
 

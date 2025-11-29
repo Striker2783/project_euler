@@ -1,4 +1,3 @@
-
 use common::number_series::Primes;
 
 pub fn run() {

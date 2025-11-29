@@ -31,7 +31,9 @@ fn solve2(max: u32) -> u64 {
         prev[0] = prev[1];
         prev[1] = prev[2];
         prev[2] = next;
-        if next * 3 > max {break;}
+        if next * 3 > max {
+            break;
+        }
         if b {
             sum += next as u64 * 3 - 1;
         } else {

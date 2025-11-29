@@ -1,4 +1,3 @@
-
 pub fn run() {
     println!("{}", solve_2(1_000_000))
 }
@@ -58,11 +57,7 @@ fn sqrt(n: u64) -> Option<u64> {
     while i * i < n {
         i += 1;
     }
-    if i * i == n {
-        Some(i)
-    } else {
-        None
-    }
+    if i * i == n { Some(i) } else { None }
 }
 
 fn size_2(m: u64) -> u32 {

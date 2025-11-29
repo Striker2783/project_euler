@@ -24,7 +24,7 @@ fn sum_digits(mut n: BigUint) -> u32 {
 #[cfg(test)]
 mod tests {
     use num::{BigUint, Num};
-    use test::{black_box, Bencher};
+    use test::{Bencher, black_box};
 
     use crate::fifties::fifty_six::sum_digits;
 

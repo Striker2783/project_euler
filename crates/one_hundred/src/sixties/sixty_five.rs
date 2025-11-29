@@ -147,9 +147,7 @@ where
 
 #[cfg(test)]
 mod tests {
-    use crate::sixties::sixty_five::{
-        continued_fraction, gcf, solve, Fraction,
-    };
+    use crate::sixties::sixty_five::{Fraction, continued_fraction, gcf, solve};
 
     use super::ECF;
 

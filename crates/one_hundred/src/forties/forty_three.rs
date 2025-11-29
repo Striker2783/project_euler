@@ -68,7 +68,7 @@ impl<T: Default + Copy, const N: usize> Permutations<T, N> {
 
 #[cfg(test)]
 mod tests {
-    use super::{is_sub_divisible, Permutations};
+    use super::{Permutations, is_sub_divisible};
 
     #[test]
     fn is_sub_divisible_test() {

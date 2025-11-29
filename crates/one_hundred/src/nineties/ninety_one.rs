@@ -10,7 +10,7 @@ fn solve(n: i32) -> u32 {
         for x2 in 0..=n {
             for y1 in 0..=n {
                 for y2 in 0..=n {
-                    if !works((x1,y1), (x2,y2)) {
+                    if !works((x1, y1), (x2, y2)) {
                         continue;
                     }
                     count += 1;

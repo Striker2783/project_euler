@@ -32,11 +32,7 @@ fn solve(a: RangeInclusive<u32>, b: RangeInclusive<u32>) -> u32 {
 }
 
 fn square_map_while(x: u32, a: RangeInclusive<u32>) -> Option<u32> {
-    if x * x <= *a.end() {
-        Some(x * x)
-    } else {
-        None
-    }
+    if x * x <= *a.end() { Some(x * x) } else { None }
 }
 
 #[cfg(test)]

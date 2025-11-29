@@ -50,7 +50,9 @@ fn helper2(v: &Vec<f64>, set: &mut HashSet<u32>) {
         if v[0] > i32::MAX as f64 {
             return;
         }
-        if v[0].rem_euclid(1f64) > 0.001 {return;}
+        if v[0].rem_euclid(1f64) > 0.001 {
+            return;
+        }
         let n = (v[0] + 0.00001) as i32;
         if n <= 0 {
             return;

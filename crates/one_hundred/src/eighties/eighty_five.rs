@@ -50,9 +50,7 @@ fn rectangles_3(n: u64, m: u64) -> u64 {
 
 #[cfg(test)]
 mod tests {
-    use crate::eighties::eighty_five::{
-        rectangles_1, rectangles_2, rectangles_3, solve,
-    };
+    use crate::eighties::eighty_five::{rectangles_1, rectangles_2, rectangles_3, solve};
 
     #[test]
     fn test_rectangles() {

@@ -3,9 +3,7 @@ pub fn run() {
 }
 
 fn solve(max: u64) -> u64 {
-    (2..=max).map(|n| {
-        totient(n as u32) as u64
-    }).sum()
+    (2..=max).map(|n| totient(n as u32) as u64).sum()
 }
 
 fn totient(mut n: u32) -> u32 {

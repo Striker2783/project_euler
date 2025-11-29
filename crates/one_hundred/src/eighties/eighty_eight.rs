@@ -3,7 +3,6 @@ use std::{
     u32,
 };
 
-
 pub fn run() {
     println!("{}", solve(12_000));
 }

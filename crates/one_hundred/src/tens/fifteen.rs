@@ -1,4 +1,3 @@
-
 pub fn run() {
     let x = lattice_path(20, 20);
     println!("{x}");

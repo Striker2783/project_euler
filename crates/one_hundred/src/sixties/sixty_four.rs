@@ -46,9 +46,7 @@ fn get_cycle(n: u32) -> Option<usize> {
 
 #[cfg(test)]
 mod tests {
-    use crate::sixties::sixty_four::{
-        get_cycle, min_square_without_square, solve,
-    };
+    use crate::sixties::sixty_four::{get_cycle, min_square_without_square, solve};
 
     #[test]
     fn test_min_square() {

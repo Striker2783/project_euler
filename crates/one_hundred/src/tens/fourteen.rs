@@ -1,4 +1,3 @@
-
 struct Collatz {
     n: u64,
 }
@@ -56,11 +55,10 @@ impl<'a> Solver {
         let mut chain = 1;
         while !collatz.is_loop() {
             let curr = collatz.next().unwrap();
-            if (curr as usize) < self.fast.len()
-                && self.fast[curr as usize] != 0 {
-                    chain = self.fast[curr as usize];
-                    break;
-                }
+            if (curr as usize) < self.fast.len() && self.fast[curr as usize] != 0 {
+                chain = self.fast[curr as usize];
+                break;
+            }
             stack.push(curr);
         }
         for v in stack {

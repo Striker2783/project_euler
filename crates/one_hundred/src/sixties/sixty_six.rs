@@ -60,9 +60,7 @@ fn get_continued_fraction(n: u32) -> Option<Vec<u32>> {
 mod tests {
     use num::BigUint;
 
-    use crate::sixties::sixty_six::{
-        get_continued_fraction, get_min, solve,
-    };
+    use crate::sixties::sixty_six::{get_continued_fraction, get_min, solve};
 
     #[test]
     fn test_get_continued_fraction() {

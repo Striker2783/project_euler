@@ -39,7 +39,7 @@ fn is_sum_of_abundant(n: u32, abundants: &HashSet<u32>) -> bool {
 }
 #[cfg(test)]
 mod tests {
-    use super::{get_abundants, is_abundant, is_sum_of_abundant, MAX};
+    use super::{MAX, get_abundants, is_abundant, is_sum_of_abundant};
 
     #[test]
     fn test_is_abundant() {

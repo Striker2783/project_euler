@@ -3,13 +3,15 @@ pub fn run() {
 }
 // Brute Force
 fn solve(n: u32) -> u32 {
-    (2..n).filter(|&n| {
-        let mut curr = n;
-        while curr != 1 && curr != 89 {
-            curr = next(curr);
-        }
-        curr == 89
-    }).count() as u32
+    (2..n)
+        .filter(|&n| {
+            let mut curr = n;
+            while curr != 1 && curr != 89 {
+                curr = next(curr);
+            }
+            curr == 89
+        })
+        .count() as u32
 }
 // Some DP but worse memory usage
 fn solve_2(n: u32) -> u32 {

@@ -4,7 +4,7 @@ pub fn run() {
 }
 
 fn all_after(a: u32, b: u32) -> bool {
-    let (mut a,mut b) = (a.min(b), b.max(a));
+    let (mut a, mut b) = (a.min(b), b.max(a));
     let mut count = 0;
     while a > 0 && b > 0 {
         if b & 1 == 1 {

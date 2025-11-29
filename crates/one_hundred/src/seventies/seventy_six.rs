@@ -15,7 +15,7 @@ fn solve(curr: u32) -> u32 {
             }
         }
     }
-    dp[(curr ) as usize][(curr ) as usize] - 1
+    dp[(curr) as usize][(curr) as usize] - 1
 }
 #[cfg(test)]
 mod tests {

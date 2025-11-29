@@ -1,4 +1,3 @@
-
 pub fn run() {
     let solution = solve(200);
     println!("{solution}");

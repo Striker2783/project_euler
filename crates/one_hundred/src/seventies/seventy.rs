@@ -66,9 +66,7 @@ fn gcd(mut a: u32, mut b: u32) -> u32 {
 
 #[cfg(test)]
 mod tests {
-    use crate::seventies::seventy::{
-        gcd, is_permutation, totient, totient_2,
-    };
+    use crate::seventies::seventy::{gcd, is_permutation, totient, totient_2};
 
     #[test]
     fn test_is_permutation() {

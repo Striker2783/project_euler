@@ -11,7 +11,7 @@ fn solve() -> u64 {
     let mut composite = 2;
     let mut spiral: Spiral<u64> = Spiral::default();
     spiral.next(); // Remove 1
-                   // Outer loop
+    // Outer loop
     spiral.next();
     spiral.next();
     spiral.next();

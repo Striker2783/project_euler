@@ -1,11 +1,19 @@
-mod ten;
 mod eleven;
-mod twelve;
-mod thirteen;
-mod fourteen;
 mod fifteen;
+mod fourteen;
 mod sixteen;
+mod ten;
+mod thirteen;
+mod twelve;
 
 use common::tens;
 
-tens!(&[ten::run, eleven::run, twelve::run, thirteen::run, fourteen::run, fifteen::run, sixteen::run]);
+tens!(&[
+    ten::run,
+    eleven::run,
+    twelve::run,
+    thirteen::run,
+    fourteen::run,
+    fifteen::run,
+    sixteen::run
+]);

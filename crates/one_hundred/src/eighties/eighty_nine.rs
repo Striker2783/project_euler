@@ -19,7 +19,7 @@ fn saved(s: &str) -> u32 {
 fn count_chars(mut n: u32) -> u32 {
     let mut count = n / 1000;
     let mut str = String::new();
-    for i in 0..(n/1000) {
+    for i in 0..(n / 1000) {
         str.push('M');
     }
     n %= 1000;
@@ -54,7 +54,7 @@ fn count_chars(mut n: u32) -> u32 {
         count += 2;
         n %= 20;
     }
-    for _ in 0..(n/10) {
+    for _ in 0..(n / 10) {
         str.push('X');
     }
     count += n / 10;

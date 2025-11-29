@@ -45,7 +45,7 @@ fn gcd(mut a: u64, mut b: u64) -> u64 {
 
 #[cfg(test)]
 mod tests {
-    use crate::seventies::seventy_one::{solve, Fraction};
+    use crate::seventies::seventy_one::{Fraction, solve};
     #[test]
     fn test_fractions() {
         assert_eq!(Fraction(3, 7).get_min(3), Fraction(1, 3));
@@ -55,6 +55,6 @@ mod tests {
     }
     #[test]
     fn test_solve() {
-        assert_eq!(solve(Fraction(3, 7), 8), Fraction(2,5));
+        assert_eq!(solve(Fraction(3, 7), 8), Fraction(2, 5));
     }
 }

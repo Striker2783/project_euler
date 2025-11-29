@@ -67,7 +67,7 @@ impl Solver {
 
 #[cfg(test)]
 mod tests {
-    use test::{black_box, Bencher};
+    use test::{Bencher, black_box};
 
     use crate::fifties::fifty_seven::Solver;
 

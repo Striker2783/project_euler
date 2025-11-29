@@ -117,11 +117,9 @@ impl RecursionAlgorithm {
         if self.nums.len() > d.shapes {
             return;
         }
-        let v = d.map.get(
-            &(*self.nums.last().unwrap() % 100)
-                .try_into()
-                .unwrap(),
-        );
+        let v = d
+            .map
+            .get(&(*self.nums.last().unwrap() % 100).try_into().unwrap());
         let v = match v {
             None => return,
             Some(a) => a,

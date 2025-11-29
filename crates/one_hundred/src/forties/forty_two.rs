@@ -64,11 +64,7 @@ fn get_triangles(max: u32) -> HashSet<u32> {
     (1..)
         .map_while(|n| {
             let number = n * (n + 1) / 2;
-            if number <= max {
-                Some(number)
-            } else {
-                None
-            }
+            if number <= max { Some(number) } else { None }
         })
         .collect()
 }

@@ -195,9 +195,7 @@ impl FromStr for Card {
 mod tests {
     use std::{cmp::Ordering, str::FromStr};
 
-    use crate::fifties::fifty_four::{
-        Card, CardParseError, Hand, HandParseError,
-    };
+    use crate::fifties::fifty_four::{Card, CardParseError, Hand, HandParseError};
 
     use super::Rank;
 

@@ -16,7 +16,7 @@ fn solve(percent: u64) -> u64 {
 }
 
 fn is_bouncy(mut n: u64) -> bool {
-    let (mut inc, mut dec) = (true,true);
+    let (mut inc, mut dec) = (true, true);
     let mut prev = n % 10;
     n /= 10;
     while n > 0 {

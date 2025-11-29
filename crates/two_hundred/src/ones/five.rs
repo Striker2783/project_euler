@@ -4,7 +4,6 @@ use crate::ones::three::is_special_sum_set;
 
 const FILE: &str = "Files/105.txt";
 
-
 pub fn run() {
     let v = parse(FILE);
     let res = solve(&v);

@@ -53,7 +53,7 @@ fn gcd(mut a: u32, mut b: u32) -> u32 {
 
 #[cfg(test)]
 mod tests {
-    use crate::seventies::seventy_three::{gcd, solve, Fraction};
+    use crate::seventies::seventy_three::{Fraction, gcd, solve};
 
     #[test]
     fn test_fractions() {
