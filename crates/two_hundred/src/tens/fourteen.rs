@@ -1,10 +1,10 @@
 pub fn run() {
-    println!("{}", solve(50, 3));
+    println!("{}", counting_blocks(50, 3));
 }
 
-fn solve(n: usize, m: usize) -> u64 {
+pub fn counting_blocks(n: usize, m: usize) -> u64 {
     let mut dp = vec![0u64; n + 1];
-    for i in 0..m {
+    for i in 0..m.min(n) {
         dp[i] = 1;
     }
     for squares in m..=n {
@@ -25,12 +25,12 @@ fn solve(n: usize, m: usize) -> u64 {
 
 #[cfg(test)]
 mod tests {
-    use crate::tens::fourteen::solve;
+    use crate::tens::fourteen::counting_blocks;
 
     #[test]
-    fn test_solve() {
-        assert_eq!(solve(4, 3), 4);
-        assert_eq!(solve(7, 3), 17);
-        assert_eq!(solve(29, 3), 673135);
+    fn test_counting_blocks() {
+        assert_eq!(counting_blocks(4, 3), 4);
+        assert_eq!(counting_blocks(7, 3), 17);
+        assert_eq!(counting_blocks(29, 3), 673135);
     }
 }
