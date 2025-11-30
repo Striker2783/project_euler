@@ -3,7 +3,7 @@ pub fn run() {
 }
 
 fn pow_mod(mut b: u64, mut e: u64, d: u64) -> u64 {
-    let mut n = b % d;
+    let mut n = 1;
     b %= d;
 
     while e > 0 {
